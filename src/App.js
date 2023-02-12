@@ -1,6 +1,7 @@
 import { db } from './database';
 
 import Desk from './components/Desk/Desk';
+import Card from './components/Card/Card';
 
 import './App.css';
 
@@ -13,9 +14,7 @@ function App() {
               {
                 db.todo.map((item, i)=> {
                   return (
-                    <>
-                      <p>{item.task}</p>
-                    </>
+                    <Card task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                   )
                 })
               }
@@ -24,9 +23,7 @@ function App() {
               {
                   db.inProgress.map((item, i)=> {
                     return (
-                      <>
-                        <p>{item.task}</p>
-                      </>
+                      <Card task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                     )
                   })
                 }
@@ -35,9 +32,7 @@ function App() {
               {
                   db.done.map((item, i)=> {
                     return (
-                      <>
-                        <p>{item.task}</p>
-                      </>
+                      <Card task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                     )
                   })
                 }

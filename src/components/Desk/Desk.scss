@@ -1,0 +1,14 @@
+.desk {
+    min-width: 320px;
+    min-height: 700px;
+    padding: 10px;
+
+    border-radius: 10px;
+    opacity: .2;
+    transition: all .3s;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .4;
+    }
+}

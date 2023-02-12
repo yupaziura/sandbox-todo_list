@@ -5,14 +5,15 @@ import './App.css';
 function App() {
   return (
     <div className="App">
+      <h1 style={{fontWeight:'bolder'}}> To Do list</h1>
         <div className='bord'>
-            <Desk color='blue' title='To Do'>
+            <Desk color='#4F646F' title='To Do'>
 
             </Desk>
-            <Desk color='orange' title='In propgres'>
+            <Desk color='#A37B73' title='In progress'>
 
             </Desk>
-            <Desk color='green' title='Done'>
+            <Desk color='#606c38' title='Done'>
 
             </Desk>
         </div>

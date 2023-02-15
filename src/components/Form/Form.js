@@ -1,6 +1,26 @@
+import { useState } from 'react';
+
 import './Form.scss';
 
-const Form = ({task, descr, priority}) => {
+const Form = ({data, setData}) => {
+    const [task, setTask] = useState('');
+    const [descr, setDescr] = useState('');
+    const [priority, setPriority] = useState('');
+
+    const submitForm = (e) => {
+        e.preventDefault();
+        const newItem = {
+            'task': task,
+            'descr': descr,
+            'priority' : priority,
+        };
+        setData({'todo': [...data.todo, newItem], 'inProgress': [...data.inProgress], 'done': [...data.done]})
+        setTask('');
+        setDescr('');
+        setPriority('')
+    }
+
+  
     return (
         <>
             <form className="form">
@@ -8,17 +28,17 @@ const Form = ({task, descr, priority}) => {
 
                 <div className="form_task form_field">
                     <label className='label' htmlFor="">Task</label>
-                    <input size={30} className='form_input' type="text" id='task' value={task}/>
+                    <input onChange={(e)=> setTask(e.target.value)} size={30} className='form_input' type="text" id='task' value={task}/>
                 </div>
 
                 <div className="form_descr form_field">
                     <label className='label' htmlFor="">Description</label>
-                    <textarea rows={5} className='form_input' type="text" id='descr'  value={descr}/>
+                    <textarea onChange={(e)=> setDescr(e.target.value)} rows={5} className='form_input' type="text" id='descr'  value={descr}/>
                 </div>
 
                 <div className="form_priority form_field">
                     <label className='label' htmlFor="">Priority</label>
-                    <select  className='form_input' name="" id="" value={priority}>
+                    <select onChange={(e)=> setPriority(e.target.value)}  className='form_input'  id="" value={priority}>
                         <option value="unset">- unset -</option>
                         <option value="low">low</option>
                         <option value="middle">middle</option>
@@ -26,7 +46,7 @@ const Form = ({task, descr, priority}) => {
                     </select>
                 </div>
 
-                <button className='form_button' type='submit'>Create</button>
+                <button onClick={(e)=> submitForm(e)} className='form_button' type='submit'>Create</button>
 
             </form>
         </>

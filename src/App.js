@@ -9,19 +9,16 @@ import './App.css';
 
 function App() {
   const [data, setData] = useState(db);
-  const [task, setTask] = useState('');
-  const [descr, setDescr] = useState('');
-  const [priority, setPriority] = useState('');
 
 
   return (
     <div className="App">
       <h1 style={{fontWeight:'bolder'}}> To Do list</h1>
-      <Form task={task} descr={descr} priority={priority} setTask={setTask} setDescr={setDescr} setPriority={setPriority}/>
+      <Form data={data} setData={setData}/>
         <div className='bord'>
             <Desk color='#4F646F' title='To Do'>
               {
-                db.todo.map((item, i)=> {
+                data.todo.map((item, i)=> {
                   return (
                     <Card task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                   )

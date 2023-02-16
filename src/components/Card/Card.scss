@@ -5,6 +5,22 @@
     cursor: pointer;
     transition: all .3s;
 
+    .priority{
+        padding: 5px;
+        text-align: center;
+        border-radius: 20px;
+    }
+
+    .low{
+        background-color: rgb(80, 117, 79);
+    }
+    .middle{
+        background-color: rgb(154, 119, 54);
+    }
+    .high{
+        background-color: rgb(172, 104, 89);
+    }
+
     &:hover{
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.46);
     }

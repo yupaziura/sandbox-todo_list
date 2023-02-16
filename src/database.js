@@ -3,41 +3,41 @@ export const db = {
         {
             'task': 'Code',
             'descr': 'kjgkjbkjbkljb',
-            'priority' : 'Middle',
+            'priority' : 'low',
         },
         {
             'task': 'Code1',
             'descr': 'kjgkjbkjbkljb',
-            'priority' : 'Middle',
+            'priority' : 'middle',
         },
     ],
     'inProgress': [
         {
             'task': 'Code2',
             'descr': 'kjgkjbkjbkljb',
-            'priority' : 'Middle',
+            'priority' : 'middle',
         },
         {
             'task': 'Code3',
             'descr': 'kjgkjbkjbkljb',
-            'priority' : 'Middle',
+            'priority' : 'high',
         },
     ],
     'done' : [
         {
             'task': 'Code4',
             'descr': 'kjgkjbkjbkljb',
-            'priority' : 'Middle',
+            'priority' : 'middle',
         },
         {
             'task': 'Code5',
             'descr': 'kjgkjbkjbkljb',
-            'priority' : 'Middle',
+            'priority' : 'middle',
         },
         {
             'task': 'Code6',
             'descr': 'kjgkjbkjbkljb',
-            'priority' : 'Middle',
+            'priority' : 'high',
         },
     ],
 };

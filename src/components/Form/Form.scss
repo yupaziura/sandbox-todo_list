@@ -1,7 +1,7 @@
 .form {
     max-width: 320px;
     margin: 20px 0 20px 0;
-    padding: 20px;
+    padding: 10px;
 
     background-color: rgba(255, 255, 255, 0.455);
     border-radius: 10px;
@@ -19,7 +19,7 @@
 
     .form_input {
         display: block;
-        width: 270px;
+        max-width: 270px;
         min-height: 40px;
         padding: 5px 10px;
 
@@ -47,6 +47,15 @@
 
         font-size: 17px;
         font-weight: 900;
+        transition: all .3s;
+        &:hover{
+            background-color: rgb(57, 71, 62);
+        }
+    }
+    input, textarea, select{
+        &:focus{
+            outline: olive dashed 2px;
+        }
     }
 
 

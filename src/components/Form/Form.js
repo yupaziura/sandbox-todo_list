@@ -13,8 +13,9 @@ const Form = ({data, setData}) => {
             'task': task,
             'descr': descr,
             'priority' : priority,
+            'status': 'todo'
         };
-        setData({'todo': [...data.todo, newItem], 'inProgress': [...data.inProgress], 'done': [...data.done]})
+        setData([...data, newItem])
         setTask('');
         setDescr('');
         setPriority('')

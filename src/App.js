@@ -18,7 +18,7 @@ function App() {
         <div className='bord'>
             <Desk color='#4F646F' title='To Do'>
               {
-                data.todo.map((item, i)=> {
+                data.filter(item=>item.status==='todo').map((item, i)=> {
                   return (
                     <Card task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                   )
@@ -27,7 +27,7 @@ function App() {
             </Desk>
             <Desk color='#A37B73' title='In progress'>
               {
-                  db.inProgress.map((item, i)=> {
+                  data.filter(item=>item.status==='inProgress').map((item, i)=> {
                     return (
                       <Card task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                     )
@@ -36,7 +36,7 @@ function App() {
             </Desk>
             <Desk color='#606c38' title='Done'>
               {
-                  db.done.map((item, i)=> {
+                  data.filter(item=>item.status==='done').map((item, i)=> {
                     return (
                       <Card task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                     )

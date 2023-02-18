@@ -5,6 +5,12 @@
     cursor: pointer;
     transition: all .3s;
 
+    &_top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .priority{
         padding: 5px;
         text-align: center;

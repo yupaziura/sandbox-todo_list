@@ -1,9 +1,9 @@
 import './DeleteButton.scss';
 
-const DeleteButton = () => {
+const DeleteButton = ({deleteTask}) => {
     return (
         <>
-            <div className="delete"></div>
+            <div onClick={()=> deleteTask()} className="delete"></div>
         </>
     )
 }

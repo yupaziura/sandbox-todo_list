@@ -2,13 +2,16 @@ import DeleteButton from '../DeleteButton/DeleteButton';
 
 import './Card.scss';
 
-const Card = ({task, descr, priority}) => {
+const Card = ({guid, setData, task, descr, priority}) => {
+    const deleteTask = () => {
+        setData(d => d.filter(item => item.id !== guid))
+    }
     return (
         <>
             <div className="card">
                 <div className="card_top">
                     <h3>{task}</h3>
-                    <DeleteButton/>
+                    <DeleteButton deleteTask={deleteTask}/>
                 </div>
                 <p>{descr}</p>
 

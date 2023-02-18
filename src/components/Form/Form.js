@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import nextId from "react-id-generator";
 
 import './Form.scss';
 
@@ -10,6 +11,7 @@ const Form = ({data, setData}) => {
     const submitForm = (e) => {
         e.preventDefault();
         const newItem = {
+            id: nextId(),
             'task': task,
             'descr': descr,
             'priority' : priority,

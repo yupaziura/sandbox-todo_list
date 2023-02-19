@@ -20,7 +20,7 @@ function App() {
               {
                 data.filter(item=>item.status==='todo').map((item, i)=> {
                   return (
-                    <Card guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
+                    <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                   )
                 })
               }
@@ -29,7 +29,7 @@ function App() {
               {
                   data.filter(item=>item.status==='inProgress').map((item, i)=> {
                     return (
-                      <Card guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
+                      <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                     )
                   })
                 }
@@ -38,7 +38,7 @@ function App() {
               {
                   data.filter(item=>item.status==='done').map((item, i)=> {
                     return (
-                      <Card guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
+                      <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                     )
                   })
                 }

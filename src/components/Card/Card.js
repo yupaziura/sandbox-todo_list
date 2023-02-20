@@ -11,10 +11,16 @@ const Card = ({status, guid, setData, task, descr, priority}) => {
             return item.id === guid? {...item, status: value} : item
             }
         ))}
+
+    const onStart = (e) => {
+        e.dataTransfer.setData('id', guid)
+    }
     
     return (
         <>
-            <div className="card">
+            {/* 1. make card draggable by adding an atribute
+            3. create onDragStart event for card and use e.transferData.setData('key', value) to store data */}
+            <div className="card" draggable onDragStart={(e)=> {onStart(e)}}>
                 <div className="card_top">
                     <h3>{task}</h3>
                     <DeleteButton deleteTask={deleteTask}/>

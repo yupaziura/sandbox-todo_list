@@ -8,6 +8,16 @@ import Form from './components/Form/Form';
 import './App.css';
 
 function App() {
+
+  // TO USE DRAG & DROP
+
+  // 1. make card draggable by adding an atribute
+  // 2. create onDragOver event for drop areas and prevent default behaviour
+  // 3. create onDragStart event for card and use e.transferData.setData('key', value) to store data
+  //    The DataTransfer object is used to hold the data that is being dragged during a drag and drop operation.
+  // 4. create onDrop to do some actions with data (in my case, change status value by using transferData.getData(key))
+
+
   const [data, setData] = useState(db);
 
 
@@ -16,7 +26,7 @@ function App() {
       <h1 style={{fontWeight:'bolder'}}> To Do list</h1>
       <Form data={data} setData={setData}/>
         <div className='bord'>
-            <Desk color='#4F646F' title='To Do'>
+            <Desk setData={setData} taskStatus='todo' color='#4F646F' title='To Do'>
               {
                 data.filter(item=>item.status==='todo').map((item, i)=> {
                   return (
@@ -25,7 +35,7 @@ function App() {
                 })
               }
             </Desk>
-            <Desk color='#A37B73' title='In progress'>
+            <Desk setData={setData} taskStatus='inProgress' color='#A37B73' title='In progress'>
               {
                   data.filter(item=>item.status==='inProgress').map((item, i)=> {
                     return (
@@ -34,7 +44,7 @@ function App() {
                   })
                 }
             </Desk>
-            <Desk color='#606c38' title='Done'>
+            <Desk setData={setData} taskStatus='done' color='#606c38' title='Done'>
               {
                   data.filter(item=>item.status==='done').map((item, i)=> {
                     return (

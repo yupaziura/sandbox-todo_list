@@ -10,17 +10,28 @@ const Form = ({data, setData}) => {
 
     const submitForm = (e) => {
         e.preventDefault();
-        const newItem = {
-            id: nextId(),
-            'task': task,
-            'descr': descr,
-            'priority' : priority,
-            'status': 'todo'
-        };
-        setData([...data, newItem])
-        setTask('');
-        setDescr('');
-        setPriority('')
+        if(!task) {
+            alert('Create task')
+        }
+        else if(!descr) {
+            alert('Write description')
+        }
+        else if (!priority || priority === 'unset') {
+            alert('Choose the priority')
+        }
+        else {
+            const newItem = {
+                id: nextId(),
+                'task': task,
+                'descr': descr,
+                'priority' : priority,
+                'status': 'todo'
+            };
+            setData([...data, newItem])
+            setTask('');
+            setDescr('');
+            setPriority('')    
+        }
     }
 
   

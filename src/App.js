@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Desk from './components/Desk/Desk';
 import Card from './components/Card/Card';
 import Form from './components/Form/Form';
+import Sort from './components/Sort/Sort';
 
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
 
 
   const [data, setData] = useState(db);
+  const [sort, setSort] = useState('');
 
 
   return (
@@ -27,15 +29,20 @@ function App() {
       <Form data={data} setData={setData}/>
         <div className='bord'>
             <Desk setData={setData} taskStatus='todo' color='#4F646F' title='To Do'>
-              {
-                data.filter(item=>item.status==='todo').map((item, i)=> {
-                  return (
-                    <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
-                  )
-                })
-              }
+              <>
+                <Sort setSort={setSort}/>
+                {
+                  data.filter(item=>item.status==='todo').map((item, i)=> {
+                    return (
+                      <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
+                    )
+                  })
+                }
+              </>
             </Desk>
             <Desk setData={setData} taskStatus='inProgress' color='#A37B73' title='In progress'>
+            <>
+              <Sort setSort={setSort}/>
               {
                   data.filter(item=>item.status==='inProgress').map((item, i)=> {
                     return (
@@ -43,8 +50,11 @@ function App() {
                     )
                   })
                 }
+              </>
             </Desk>
             <Desk setData={setData} taskStatus='done' color='#606c38' title='Done'>
+            <>
+              <Sort setSort={setSort}/>
               {
                   data.filter(item=>item.status==='done').map((item, i)=> {
                     return (
@@ -52,6 +62,7 @@ function App() {
                     )
                   })
                 }
+              </>
             </Desk>
         </div>
     </div>

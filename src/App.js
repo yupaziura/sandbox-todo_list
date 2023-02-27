@@ -20,7 +20,9 @@ function App() {
 
 
   const [data, setData] = useState(db);
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState('default');
+
+  const sortOrder = ['low', 'middle', 'high'];
 
 
   return (
@@ -32,7 +34,7 @@ function App() {
               <>
                 <Sort setSort={setSort}/>
                 {
-                  data.filter(item=>item.status==='todo').map((item, i)=> {
+                  data.filter(item=>item.status==='todo').sort((a, b)=>  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) ).map((item, i)=> {
                     return (
                       <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                     )
@@ -44,7 +46,7 @@ function App() {
             <>
               <Sort setSort={setSort}/>
               {
-                  data.filter(item=>item.status==='inProgress').map((item, i)=> {
+                  data.filter(item=>item.status==='inProgress').sort((a, b)=>  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) ).map((item, i)=> {
                     return (
                       <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                     )
@@ -56,7 +58,7 @@ function App() {
             <>
               <Sort setSort={setSort}/>
               {
-                  data.filter(item=>item.status==='done').map((item, i)=> {
+                  data.filter(item=>item.status==='done').sort((a, b)=>  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) ).map((item, i)=> {
                     return (
                       <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
                     )

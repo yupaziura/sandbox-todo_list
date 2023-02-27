@@ -1,5 +1,5 @@
 import { db } from './database';
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
 
 import Desk from './components/Desk/Desk';
 import Card from './components/Card/Card';
@@ -29,44 +29,48 @@ function App() {
     <div className="App">
       <h1 style={{fontWeight:'bolder'}}> To Do list</h1>
       <Form data={data} setData={setData}/>
-        <div className='bord'>
-            <Desk setData={setData} taskStatus='todo' color='#4F646F' title='To Do'>
-              <>
-                <Sort setSort={setSort}/>
-                {
-                  data.filter(item=>item.status==='todo').sort((a, b)=>  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) ).map((item, i)=> {
-                    return (
-                      <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
-                    )
-                  })
-                }
-              </>
-            </Desk>
-            <Desk setData={setData} taskStatus='inProgress' color='#A37B73' title='In progress'>
+      <Sort setSort={setSort}/>
+      <div className='bord'>
+          <Desk setData={setData} taskStatus='todo' color='#4F646F' title='To Do'>
             <>
-              <Sort setSort={setSort}/>
               {
-                  data.filter(item=>item.status==='inProgress').sort((a, b)=>  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) ).map((item, i)=> {
-                    return (
-                      <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
-                    )
-                  })
-                }
-              </>
-            </Desk>
-            <Desk setData={setData} taskStatus='done' color='#606c38' title='Done'>
-            <>
-              <Sort setSort={setSort}/>
-              {
-                  data.filter(item=>item.status==='done').sort((a, b)=>  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) ).map((item, i)=> {
-                    return (
-                      <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
-                    )
-                  })
-                }
-              </>
-            </Desk>
-        </div>
+                data.filter(item=>item.status==='todo')
+                    .sort((a, b)=> sort === 'ascending'?  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) :  sort === 'descending'? sortOrder.indexOf(b.priority) - sortOrder.indexOf(a.priority) : 0)
+                    .map((item, i)=> {
+                  return (
+                    <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
+                  )
+                })
+              }
+            </>
+          </Desk>
+          <Desk setData={setData} taskStatus='inProgress' color='#A37B73' title='In progress'>
+          <>
+            {
+                data.filter(item=>item.status==='inProgress')
+                    .sort((a, b)=> sort === 'ascending'?  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) :  sort === 'descending'? sortOrder.indexOf(b.priority) - sortOrder.indexOf(a.priority) : 0)
+                    .map((item, i)=> {
+                  return (
+                    <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
+                  )
+                })
+              }
+            </>
+          </Desk>
+          <Desk setData={setData} taskStatus='done' color='#606c38' title='Done'>
+          <>
+            {
+                data.filter(item=>item.status==='done')
+                    .sort((a, b)=> sort === 'ascending'?  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) :  sort === 'descending'? sortOrder.indexOf(b.priority) - sortOrder.indexOf(a.priority) : 0)
+                    .map((item, i)=> {
+                  return (
+                    <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
+                  )
+                })
+              }
+            </>
+          </Desk>
+      </div>
     </div>
   );
 }

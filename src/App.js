@@ -21,7 +21,23 @@ function App() {
   const [data, setData] = useState(db);
   const [sort, setSort] = useState('default');
 
-
+  const deskData =  [
+    {
+      color: '#4F646F',
+      taskStatus: 'todo',
+      title: 'To Do'
+    },
+    {
+      color: '#A37B73',
+      taskStatus: 'inProgress',
+      title: 'In progress'
+    },
+    {
+      color: '#606c38',
+      taskStatus: 'done',
+      title: 'Done'
+    }
+  ]
 
   return (
     <div className="App">
@@ -29,10 +45,15 @@ function App() {
       <Form data={data} setData={setData}/>
       <Sort setSort={setSort}/>
       <div className='bord'>
-          <Desk sort={sort} data={data} setData={setData} taskStatus='todo' color='#4F646F' title='To Do'/>
-          <Desk sort={sort} data={data} setData={setData} taskStatus='inProgress' color='#A37B73' title='In progress'/>
-          <Desk sort={sort} data={data} setData={setData} taskStatus='done' color='#606c38' title='Done'/>
-
+        {
+          deskData.map(({taskStatus, color, title}, i)=>{
+            return (
+              <div key={i}>
+                <Desk sort={sort} data={data} setData={setData} taskStatus={taskStatus} color={color} title={title}/>
+              </div>
+            )
+          })
+        }
       </div>
     </div>
   );

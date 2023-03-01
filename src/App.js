@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import Desk from './components/Desk/Desk';
 import Form from './components/Form/Form';
-import Sort from './components/Sort/Sort';
 
 import './App.css';
 
@@ -19,7 +18,6 @@ function App() {
 
 
   const [data, setData] = useState(db);
-  const [sort, setSort] = useState('default');
 
   const deskData =  [
     {
@@ -43,13 +41,12 @@ function App() {
     <div className="App">
       <h1 style={{fontWeight:'bolder'}}> To Do list</h1>
       <Form data={data} setData={setData}/>
-      <Sort setSort={setSort}/>
       <div className='bord'>
         {
           deskData.map(({taskStatus, color, title}, i)=>{
             return (
               <div key={i}>
-                <Desk sort={sort} data={data} setData={setData} taskStatus={taskStatus} color={color} title={title}/>
+                <Desk data={data} setData={setData} taskStatus={taskStatus} color={color} title={title}/>
               </div>
             )
           })

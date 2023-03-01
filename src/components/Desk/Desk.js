@@ -1,9 +1,13 @@
+import { useState } from 'react';
+
 import Card from '../Card/Card';
+import Sort from '../Sort/Sort';
 
 import './Desk.scss';
 
-const Desk = ({color, title, taskStatus, setData, data, sort}) => {
+const Desk = ({color, title, taskStatus, setData, data}) => {
   const sortOrder = ['low', 'middle', 'high'];
+  const [sort, setSort] = useState('default');
 
   const drop = (e, status) => {
     let id = e.dataTransfer.getData('id');
@@ -21,6 +25,7 @@ const Desk = ({color, title, taskStatus, setData, data, sort}) => {
                 style={{backgroundColor: `${color}`}}
           >
             <h2>{title}</h2>
+            <Sort setSort={setSort}/>
 
             {
             data.filter(item=>item.status===taskStatus)

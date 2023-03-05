@@ -34,6 +34,11 @@ function App() {
       color: '#606c38',
       taskStatus: 'done',
       title: 'Done'
+    },
+    {
+      color: 'grey',
+      taskStatus: 'archive',
+      title: 'Archive'
     }
   ]
 

@@ -37,6 +37,7 @@ const Card = ({status, guid, setData, task, descr, priority}) => {
                         <option value="todo">to do</option>
                         <option value="inProgress">in progress</option>
                         <option value="done">done</option>
+                        <option value="archive">archive</option>
                     </select>
                 </div>
             </div>

@@ -6,14 +6,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #c2c5aa;
+}
+
+*{
   box-sizing: border-box;
 }
 
-.bord {
-  width: 100%;
-  display: flex;
-  justify-content: left;
-  flex-wrap: wrap;
-  gap: 30px;
-}
 

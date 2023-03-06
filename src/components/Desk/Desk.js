@@ -5,7 +5,7 @@ import Sort from '../Sort/Sort';
 
 import './Desk.scss';
 
-const Desk = ({color, title, taskStatus, setData, data}) => {
+const Desk = ({color, title, taskStatus, setData, data, visible}) => {
   const sortOrder = ['low', 'middle', 'high'];
   const [sort, setSort] = useState('default');
 
@@ -21,7 +21,7 @@ const Desk = ({color, title, taskStatus, setData, data}) => {
         4. create onDrop to do some actions with data (in my case, change status value by using transferData.getData(key)) */}
           <div  onDragOver={(e)=> {e.preventDefault()}} 
                 onDrop={(e)=>{drop(e, taskStatus)}}
-                className='desk' 
+                className={`desk ${!visible? 'visisbleFasle' : null}`}
                 style={{backgroundColor: `${color}`}}
           >
             <h2>{title}</h2>

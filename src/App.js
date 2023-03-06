@@ -18,27 +18,32 @@ function App() {
 
 
   const [data, setData] = useState(db);
+  const [visibleDesk, setvisibleDesk] = useState(false);
 
   const deskData =  [
     {
       color: '#4F646F',
       taskStatus: 'todo',
-      title: 'To Do'
+      title: 'To Do',
+      visible: true
     },
     {
       color: '#A37B73',
       taskStatus: 'inProgress',
-      title: 'In progress'
+      title: 'In progress',
+      visible: true
     },
     {
       color: '#606c38',
       taskStatus: 'done',
-      title: 'Done'
+      title: 'Done',
+      visible: true
     },
     {
       color: 'grey',
       taskStatus: 'archive',
-      title: 'Archive'
+      title: 'Archive',
+      visible: visibleDesk
     }
   ]
 
@@ -48,10 +53,15 @@ function App() {
       <Form data={data} setData={setData}/>
       <div className='bord'>
         {
-          deskData.map(({taskStatus, color, title}, i)=>{
+          deskData.map(({taskStatus, color, title, visible}, i)=>{
             return (
               <div key={i}>
-                <Desk data={data} setData={setData} taskStatus={taskStatus} color={color} title={title}/>
+                {
+                  title === 'Archive'?
+                  <button onClick={()=>setvisibleDesk(visibleDesk=>!visibleDesk)}>show archive</button>
+                  : null
+                }
+                <Desk data={data} setData={setData} taskStatus={taskStatus} color={color} title={title} visible={visible}/>
               </div>
             )
           })

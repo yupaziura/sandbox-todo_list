@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Desk from './components/Desk/Desk';
 import Form from './components/Form/Form';
 
-import './App.css';
+import './App.scss';
 
 function App() {
 
@@ -55,10 +55,10 @@ function App() {
         {
           deskData.map(({taskStatus, color, title, visible}, i)=>{
             return (
-              <div key={i}>
+              <div className='desk_container' key={i}>
                 {
                   title === 'Archive'?
-                  <button onClick={()=>setvisibleDesk(visibleDesk=>!visibleDesk)}>show archive</button>
+                  <button className='openButton' onClick={()=>setvisibleDesk(visibleDesk=>!visibleDesk)}>{!visible? 'show archive' : 'hide archive'}</button>
                   : null
                 }
                 <Desk data={data} setData={setData} taskStatus={taskStatus} color={color} title={title} visible={visible}/>

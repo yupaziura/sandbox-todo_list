@@ -6,6 +6,7 @@ import {
   set,
   getDatabase,
   ref,
+  push
 } from "firebase/database";
 
 import './Form.scss';
@@ -32,7 +33,7 @@ const Form = ({data, setData}) => {
       // Initialize Realtime Database and get a reference to the service
       const database = getDatabase(app);
     
-      const setDataFB = ref(database);
+      const setDataFB = ref(database, 'tasks');
     
     
 
@@ -49,9 +50,12 @@ const Form = ({data, setData}) => {
             alert('Choose the priority')
         }
         else {
+            
             const giud = Guid.newGuid();
+            const newPostRef = push(setDataFB)
+
             const pushData = (item) => {
-                set(child(setDataFB, `/tasks/${giud}`), item)
+                set(newPostRef, item)
               };
             const newItem = {
                 id: giud,

@@ -12,7 +12,7 @@ const Desk = ({color, title, taskStatus, setData, data, visible}) => {
   const drop = (e, status) => {
     let id = e.dataTransfer.getData('id');
       setData(data=> data.map(item => {
-        return item.id.toString() === id.toString()? {...item, status: status} : item
+        return item.id.StringGuid?.toString() === id?.toString()? {...item, status: status} : item
       }))
   }
     return (
@@ -32,7 +32,7 @@ const Desk = ({color, title, taskStatus, setData, data, visible}) => {
                 .sort((a, b)=> sort === 'ascending'?  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) :  sort === 'descending'? sortOrder.indexOf(b.priority) - sortOrder.indexOf(a.priority) : 0)
                 .map((item, i)=> {
               return (
-                <Card status={item.status} guid={item.id} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
+                <Card status={item.status} guid={item.id.StringGuid} setData={setData} task={item.task} descr={item.descr} priority={item.priority} key={i}/>
               )
             })
           }

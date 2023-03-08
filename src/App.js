@@ -51,7 +51,7 @@ function App() {
     fetchData();
   }, [database, getData]);
 
-  // console.log(data)
+  console.log(data)
 
 
 

@@ -4,11 +4,11 @@ import './Card.scss';
 
 const Card = ({status, guid, setData, task, descr, priority}) => {
     const deleteTask = () => {
-        setData(d => d.filter(item => item.id !== guid))
+        setData(d => d.filter(item => item.id.StringGuid !== guid))
     }
     const changeStatus = (value) => {
         setData(data => data.map((item, i) => {
-            return item.id === guid? {...item, status: value} : item
+            return item.id.StringGuid === guid? {...item, status: value} : item
             }
         ))}
 

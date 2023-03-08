@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { Guid } from 'js-guid';
 import { initializeApp } from "firebase/app";
 import {
-  child,
   set,
   getDatabase,
   ref,
-  push
+  child
 } from "firebase/database";
 
 import './Form.scss';
@@ -33,7 +32,7 @@ const Form = ({data, setData}) => {
       // Initialize Realtime Database and get a reference to the service
       const database = getDatabase(app);
     
-      const setDataFB = ref(database, 'tasks');
+      const setDataFB = ref(database);
     
     
 
@@ -52,10 +51,8 @@ const Form = ({data, setData}) => {
         else {
             
             const giud = Guid.newGuid();
-            const newPostRef = push(setDataFB)
-
             const pushData = (item) => {
-                set(newPostRef, item)
+                set(child(setDataFB, `/tasks/${giud}`), item)
               };
             const newItem = {
                 id: giud,

@@ -37,14 +37,22 @@ function App() {
 
   useEffect(() => {
     const fetchData = () => {
-      get(child(getData, "/")).then((snapshot) => {
+      const newArr = [];
+      get(child(getData, "/tasks")).then((snapshot) => {
         const fetched = snapshot.val();
-        // console.log(fetched)
-        setData(fetched);
+        return fetched;
+      }).then(val=>{
+        for(let [key, value] of Object.entries(val)){
+          newArr.push(value);
+          setData(newArr)
+        }
       }); 
     };
     fetchData();
   }, [database, getData]);
+
+  // console.log(data)
+
 
 
   // TO USE DRAG & DROP

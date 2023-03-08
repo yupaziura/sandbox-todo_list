@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import nextId from "react-id-generator";
+import { Guid } from 'js-guid';
+import { initializeApp } from "firebase/app";
+import {
+  child,
+  set,
+  getDatabase,
+  ref,
+} from "firebase/database";
 
 import './Form.scss';
 
@@ -8,8 +15,30 @@ const Form = ({data, setData}) => {
     const [descr, setDescr] = useState('');
     const [priority, setPriority] = useState('');
 
+    const firebaseConfig = {
+        apiKey: "AIzaSyCzLwQ6Hu_G40-bW7-5dw_KGAfIHsKnZE8",
+        authDomain: "to-do-list-73624.firebaseapp.com",
+        databaseURL: "https://to-do-list-73624-default-rtdb.firebaseio.com",
+        projectId: "to-do-list-73624",
+        storageBucket: "to-do-list-73624.appspot.com",
+        messagingSenderId: "313748834324",
+        appId: "1:313748834324:web:59e014c5c2f7e59750ff01"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    
+    
+      // Initialize Realtime Database and get a reference to the service
+      const database = getDatabase(app);
+    
+      const setDataFB = ref(database);
+    
+    
+
     const submitForm = (e) => {
         e.preventDefault();
+        
         if(!task) {
             alert('Create task')
         }
@@ -20,13 +49,21 @@ const Form = ({data, setData}) => {
             alert('Choose the priority')
         }
         else {
+            const giud = Guid.newGuid();
+            const pushData = (item) => {
+                set(child(setDataFB, `/tasks/${giud}`), item)
+              };
             const newItem = {
-                id: nextId(),
+                id: giud,
                 'task': task,
                 'descr': descr,
                 'priority' : priority,
                 'status': 'todo'
             };
+
+            pushData(newItem)
+            
+            
             setData([...data, newItem])
             setTask('');
             setDescr('');

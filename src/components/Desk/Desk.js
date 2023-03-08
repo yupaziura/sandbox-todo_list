@@ -28,7 +28,7 @@ const Desk = ({color, title, taskStatus, setData, data, visible}) => {
             <Sort setSort={setSort}/>
 
             {
-            data?.filter(item=>item.status===taskStatus)
+            data?.filter(item=>item?.status===taskStatus)
                 .sort((a, b)=> sort === 'ascending'?  sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority) :  sort === 'descending'? sortOrder.indexOf(b.priority) - sortOrder.indexOf(a.priority) : 0)
                 .map((item, i)=> {
               return (

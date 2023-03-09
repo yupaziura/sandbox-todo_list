@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import {
   child,
   getDatabase,
-  ref, remove
+  ref, remove, set
 } from "firebase/database";
 
 
@@ -10,7 +10,7 @@ import DeleteButton from '../DeleteButton/DeleteButton';
 
 import './Card.scss';
 
-const Card = ({status, guid, setData, task, descr, priority}) => {
+const Card = ({data, status, guid, setData, task, descr, priority}) => {
     const firebaseConfig = {
         apiKey: "AIzaSyCzLwQ6Hu_G40-bW7-5dw_KGAfIHsKnZE8",
         authDomain: "to-do-list-73624.firebaseapp.com",
@@ -35,10 +35,13 @@ const Card = ({status, guid, setData, task, descr, priority}) => {
         setData(d => d.filter(item => item.id.StringGuid !== guid))
     }
     const changeStatus = (value) => {
-        setData(data => data.map((item, i) => {
-            return item.id.StringGuid === guid? {...item, status: value} : item
-            }
-        ))}
+        const updatedData = data.map((item, i) => {
+            const updatedTask = item.id.StringGuid === guid? {...item, status: value} : item
+            set(child(getData, `tasks/${item.id.StringGuid}`), updatedTask)
+            return updatedTask
+            })
+
+        setData(updatedData)}
 
     const onStart = (e) => {
         e.dataTransfer.setData('id', guid)

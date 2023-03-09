@@ -42,16 +42,21 @@ function App() {
         const fetched = snapshot.val();
         return fetched;
       }).then(val=>{
-        for(let [key, value] of Object.entries(val)){
-          newArr.push(value);
-          setData(newArr)
+        console.log(val)
+        if(val){
+          for(let value of Object.entries(val)){
+            newArr.push(value[1]);
+            setData(newArr)  
+          }
+        }
+        else{
+          setData([])
         }
       }); 
     };
     fetchData();
   }, [database, getData]);
 
-  console.log(data)
 
 
 

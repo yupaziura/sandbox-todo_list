@@ -10,7 +10,7 @@ import {
 
 import './Form.scss';
 
-const Form = ({data, setData}) => {
+const Form = ({data, setData, showModal, setShowModal}) => {
     const [task, setTask] = useState('');
     const [descr, setDescr] = useState('');
     const [priority, setPriority] = useState('');
@@ -64,11 +64,12 @@ const Form = ({data, setData}) => {
 
             pushData(newItem)
             
-            
+            setShowModal(true);
             setData([...data, newItem])
             setTask('');
             setDescr('');
-            setPriority('')    
+            setPriority('')  
+            setTimeout(()=>setShowModal(false), 2000)  
         }
     }
 

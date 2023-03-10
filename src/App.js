@@ -9,11 +9,13 @@ import {
 
 import Desk from './components/Desk/Desk';
 import Form from './components/Form/Form';
+import ModalWindow from './components/Modal/Modal';
 
 import './App.scss';
 
 function App() {
   const [data, setData] = useState();
+  const [showModal, setShowModal] = useState(false);
 
 
   const firebaseConfig = {
@@ -100,8 +102,14 @@ function App() {
 
   return (
     <div className="App">
+      {
+        showModal? 
+        <ModalWindow response={'All done!'}/>
+          :
+        null
+      }
       <h1 style={{fontWeight:'bolder'}}> To Do list</h1>
-      <Form data={data} setData={setData}/>
+      <Form data={data} setData={setData} showModal={showModal} setShowModal={setShowModal}/>
       <div className='bord'>
         {
           deskData.map(({taskStatus, color, title, visible}, i)=>{

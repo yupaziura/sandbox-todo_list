@@ -14,6 +14,7 @@ const Form = ({data, setData, showModal, setShowModal}) => {
     const [task, setTask] = useState('');
     const [descr, setDescr] = useState('');
     const [priority, setPriority] = useState('');
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
     const firebaseConfig = {
         apiKey: "AIzaSyCzLwQ6Hu_G40-bW7-5dw_KGAfIHsKnZE8",
@@ -48,6 +49,9 @@ const Form = ({data, setData, showModal, setShowModal}) => {
         else if (!priority || priority === 'unset') {
             alert('Choose the priority')
         }
+        else if (!date) {
+            alert('Set due date')
+        }
         else {
             
             const giud = Guid.newGuid();
@@ -59,7 +63,8 @@ const Form = ({data, setData, showModal, setShowModal}) => {
                 'task': task,
                 'descr': descr,
                 'priority' : priority,
-                'status': 'todo'
+                'status': 'todo',
+                'date': date
             };
 
             pushData(newItem)
@@ -68,7 +73,8 @@ const Form = ({data, setData, showModal, setShowModal}) => {
             setData([...data, newItem])
             setTask('');
             setDescr('');
-            setPriority('')  
+            setPriority('');
+            setDate(new Date().toISOString().split('T')[0]);
             setTimeout(()=>setShowModal(false), 2000)  
         }
     }
@@ -97,6 +103,11 @@ const Form = ({data, setData, showModal, setShowModal}) => {
                         <option value="middle">middle</option>
                         <option value="high">high</option>
                     </select>
+                </div>
+
+                <div className=" form_date form_field">
+                    <label className='label' htmlFor="">Due date</label>
+                    <input value={date} className='form_input' type="date" onChange={(e)=>setDate(e.target.value)}/>
                 </div>
 
                 <button onClick={(e)=> submitForm(e)} className='form_button' type='submit'>Create</button>

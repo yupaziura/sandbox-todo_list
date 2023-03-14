@@ -10,7 +10,7 @@ import DeleteButton from '../DeleteButton/DeleteButton';
 
 import './Card.scss';
 
-const Card = ({data, status, guid, setData, task, descr, priority}) => {
+const Card = ({data, date, status, guid, setData, task, descr, priority}) => {
     const firebaseConfig = {
         apiKey: "AIzaSyCzLwQ6Hu_G40-bW7-5dw_KGAfIHsKnZE8",
         authDomain: "to-do-list-73624.firebaseapp.com",
@@ -57,6 +57,8 @@ const Card = ({data, status, guid, setData, task, descr, priority}) => {
                     <DeleteButton deleteTask={deleteTask}/>
                 </div>
                 <p>{descr}</p>
+
+                <p>{date}</p>
 
                 <div className={`priority ${priority}`}>
                     {priority}

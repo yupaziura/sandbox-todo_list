@@ -35,8 +35,6 @@ const Form = ({data, setData, showModal, setShowModal}) => {
     
       const setDataFB = ref(database);
     
-    
-
     const submitForm = (e) => {
         e.preventDefault();
         
@@ -49,8 +47,8 @@ const Form = ({data, setData, showModal, setShowModal}) => {
         else if (!priority || priority === 'unset') {
             alert('Choose the priority')
         }
-        else if (!date) {
-            alert('Set due date')
+        else if (new Date(date) < new Date().setHours(0,0,0,0)) {
+            alert('Set proper due date')
         }
         else {
             
@@ -107,7 +105,7 @@ const Form = ({data, setData, showModal, setShowModal}) => {
 
                 <div className=" form_date form_field">
                     <label className='label' htmlFor="">Due date</label>
-                    <input value={date} className='form_input' type="date" onChange={(e)=>setDate(e.target.value)}/>
+                    <input value={date} className='form_input' type="date" onChange={(e)=>setDate(e.target.value) }/>
                 </div>
 
                 <button onClick={(e)=> submitForm(e)} className='form_button' type='submit'>Create</button>

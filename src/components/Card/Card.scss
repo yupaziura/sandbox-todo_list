@@ -48,3 +48,11 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.46);
     }
 }
+
+.card.soon {
+    background-color: rgb(191, 131, 72);
+}
+
+.card.overdue {
+    background-color: rgb(191, 72, 72);
+}

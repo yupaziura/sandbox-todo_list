@@ -72,6 +72,7 @@ function App() {
 
 
   const [visibleDesk, setvisibleDesk] = useState(false);
+  const [visibleForm, setVisibleForm] = useState(false);
 
   const deskData =  [
     {
@@ -109,7 +110,8 @@ function App() {
         null
       }
       <h1 style={{fontWeight:'bolder'}}> To Do list</h1>
-      <Form data={data} setData={setData} showModal={showModal} setShowModal={setShowModal}/>
+      <button className='openButton form_button' onClick={()=>setVisibleForm(visibleDesk=>!visibleDesk)}>{!visibleForm? 'create new task' : 'hide'}</button>
+      <Form visibleForm={visibleForm} data={data} setData={setData} showModal={showModal} setShowModal={setShowModal}/>
       <div className='bord'>
         {
           deskData.map(({taskStatus, color, title, visible}, i)=>{

@@ -10,7 +10,7 @@ import {
 
 import './Form.scss';
 
-const Form = ({data, setData, showModal, setShowModal}) => {
+const Form = ({data, setData, showModal, setShowModal, visibleForm}) => {
     const [task, setTask] = useState('');
     const [descr, setDescr] = useState('');
     const [priority, setPriority] = useState('');
@@ -40,9 +40,6 @@ const Form = ({data, setData, showModal, setShowModal}) => {
         
         if(!task) {
             alert('Create task')
-        }
-        else if(!descr) {
-            alert('Write description')
         }
         else if (!priority || priority === 'unset') {
             alert('Choose the priority')
@@ -80,9 +77,10 @@ const Form = ({data, setData, showModal, setShowModal}) => {
   
     return (
         <>
-            <form className="form">
+            <form className={`form ${visibleForm? '' : 'visisbleFasle'}`}>
                 <h2>Create task</h2>
 
+                <div className="form_container">
                 <div className="form_task form_field">
                     <label className='label' htmlFor="">Task</label>
                     <input onChange={(e)=> setTask(e.target.value)} size={30} className='form_input' type="text" id='task' value={task}/>
@@ -106,6 +104,7 @@ const Form = ({data, setData, showModal, setShowModal}) => {
                 <div className=" form_date form_field">
                     <label className='label' htmlFor="">Due date</label>
                     <input value={date} className='form_input' type="date" onChange={(e)=>setDate(e.target.value) }/>
+                </div>
                 </div>
 
                 <button onClick={(e)=> submitForm(e)} className='form_button' type='submit'>Create</button>

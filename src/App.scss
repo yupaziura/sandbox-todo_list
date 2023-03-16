@@ -7,6 +7,7 @@
 .bord {
     width: 100%;
     display: grid;
+    margin-top: 20px;
     grid-template-columns: repeat(auto-fill, 320px);
     grid-gap: 20px;
   }
@@ -15,6 +16,10 @@
     @include button;
     position: absolute;
     top: -50px;
+}
+
+.form_button{
+    position:static;
 }
 
 .desk_container{

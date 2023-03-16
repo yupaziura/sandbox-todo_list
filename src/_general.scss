@@ -34,3 +34,7 @@
             background-color: rgb(57, 71, 62);
         }
 }
+
+@mixin hide {
+    display: none;
+}

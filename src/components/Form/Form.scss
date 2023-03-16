@@ -1,5 +1,4 @@
-@import '../../general';
-@import '../../index.css';
+@import '../../general.scss';
 
 .form {
     max-width: 620px;
@@ -48,4 +47,8 @@
             outline: olive dashed 2px;
         }
     }
+}
+
+.form.visisbleFasle{
+    @include hide;
 }

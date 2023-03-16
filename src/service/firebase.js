@@ -1,23 +1,38 @@
-import firebase from "firebase/app";
-import 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
+
 
 const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "PROJECT_ID.firebaseapp.com",
-  databaseURL: "https://PROJECT_ID.firebaseio.com",
-  projectId: "PROJECT_ID",
-  storageBucket: "PROJECT_ID.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID",
-  measurementId: "G-MEASUREMENT_ID",
-};
+    apiKey: "AIzaSyCzLwQ6Hu_G40-bW7-5dw_KGAfIHsKnZE8",
+    authDomain: "to-do-list-73624.firebaseapp.com",
+    databaseURL: "https://to-do-list-73624-default-rtdb.firebaseio.com",
+    projectId: "to-do-list-73624",
+    storageBucket: "to-do-list-73624.appspot.com",
+    messagingSenderId: "313748834324",
+    appId: "1:313748834324:web:59e014c5c2f7e59750ff01"
+  };
 
-// Initialize Firebase 
-firebase.initializeApp(firebaseConfig);
+ 
+export const app = initializeApp(firebaseConfig);
 
-export const auth = firebase.auth();
+export const auth = getAuth();
+const provider = new GoogleAuthProvider();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
-
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, provider)
+      .then((result) => {
+          // const credential = GoogleAuthProvider.credentialFromResult(result);
+          // const token = credential.accessToken;
+          const user = result.user;
+          // console.log(user);
+          return user;
+      })
+      .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          const email = error.customData.email;
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          console.log(errorCode, errorMessage, email, credential);
+      });
+}

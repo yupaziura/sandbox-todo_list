@@ -3,14 +3,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const Login = () => {
+const Login = ({userId, setUserId}) => {
 
-    const [userId, setUsetId] = useState('');
     const navigate = useNavigate();
 
     const login = () => {
-        const u = signInWithGoogle();
-        setUsetId(u)
+        signInWithGoogle(setUserId);
+        
     }
 
     console.log(userId)

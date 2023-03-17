@@ -13,8 +13,7 @@ import ModalWindow from '../../components/Modal/Modal';
 
 import './Main.scss';
 
-function MainPage() {
-  const [data, setData] = useState();
+function MainPage({data, setData}) {
   const [showModal, setShowModal] = useState(false);
 
 
@@ -40,7 +39,7 @@ function MainPage() {
   useEffect(() => {
     const fetchData = () => {
       const newArr = [];
-      get(child(getData, "/tasks")).then((snapshot) => {
+      get(child(getData, `/tasks/${localStorage.getItem('userId')}`)).then((snapshot) => {
         const fetched = snapshot.val();
         return fetched;
       }).then(val=>{
@@ -58,6 +57,8 @@ function MainPage() {
     };
     fetchData();
   }, [database, getData]);
+
+  console.log(data)
 
 
 

@@ -19,13 +19,14 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
-export const signInWithGoogle = () => {
+export const signInWithGoogle = (setId) => {
   signInWithPopup(auth, provider)
       .then((result) => {
           // const credential = GoogleAuthProvider.credentialFromResult(result);
           // const token = credential.accessToken;
           const user = result.user;
-          // console.log(user);
+          localStorage.setItem('userId', user.uid)
+          console.log(user);
           return user;
       })
       .catch((error) => {

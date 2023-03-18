@@ -31,13 +31,13 @@ const Card = ({data, date, status, guid, setData, task, descr, priority}) => {
       const getData = ref(database);
     
     const deleteTask = () => {
-        remove(child(getData, `tasks/${guid}`))
+        remove(child(getData, `tasks/${localStorage.getItem('userId')}/${guid}`))
         setData(d => d.filter(item => item.id.StringGuid !== guid))
     }
     const changeStatus = (value) => {
         const updatedData = data.map((item, i) => {
             const updatedTask = item.id.StringGuid === guid? {...item, status: value} : item
-            set(child(getData, `tasks/${item.id.StringGuid}`), updatedTask)
+            set(child(getData, `tasks/${localStorage.getItem('userId')}/${item.id.StringGuid}`), updatedTask)
             return updatedTask
             })
 

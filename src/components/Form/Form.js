@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import { Guid } from 'js-guid';
-import { initializeApp } from "firebase/app";
-import {
-  set,
-  getDatabase,
-  ref,
-  child
-} from "firebase/database";
+import {set,child} from "firebase/database";
+import { getData } from '../../service/firebase';
 
 import './Form.scss';
 
@@ -16,24 +11,6 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm}) => {
     const [priority, setPriority] = useState('');
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyCzLwQ6Hu_G40-bW7-5dw_KGAfIHsKnZE8",
-        authDomain: "to-do-list-73624.firebaseapp.com",
-        databaseURL: "https://to-do-list-73624-default-rtdb.firebaseio.com",
-        projectId: "to-do-list-73624",
-        storageBucket: "to-do-list-73624.appspot.com",
-        messagingSenderId: "313748834324",
-        appId: "1:313748834324:web:59e014c5c2f7e59750ff01"
-      };
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-    
-    
-      // Initialize Realtime Database and get a reference to the service
-      const database = getDatabase(app);
-    
-      const setDataFB = ref(database);
     
     const submitForm = (e) => {
         e.preventDefault();
@@ -51,7 +28,7 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm}) => {
             
             const giud = Guid.newGuid();
             const pushData = (item) => {
-                set(child(setDataFB, `/tasks/${localStorage.getItem('userId')}/${giud}`), item)
+                set(child(getData, `/tasks/${localStorage.getItem('userId')}/${giud}`), item)
               };
             const newItem = {
                 id: giud,

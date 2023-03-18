@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react';
-import { initializeApp } from "firebase/app";
-import {
-  child,
-  get,
-  getDatabase,
-  ref,
-} from "firebase/database";
+import {child,get} from "firebase/database";
+import { getData } from '../../service/firebase';
 
 import Desk from '../../components/Desk/Desk';
 import Form from '../../components/Form/Form';
@@ -17,24 +12,6 @@ function MainPage({data, setData}) {
   const [showModal, setShowModal] = useState(false);
 
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCzLwQ6Hu_G40-bW7-5dw_KGAfIHsKnZE8",
-    authDomain: "to-do-list-73624.firebaseapp.com",
-    databaseURL: "https://to-do-list-73624-default-rtdb.firebaseio.com",
-    projectId: "to-do-list-73624",
-    storageBucket: "to-do-list-73624.appspot.com",
-    messagingSenderId: "313748834324",
-    appId: "1:313748834324:web:59e014c5c2f7e59750ff01"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-
-
-  // Initialize Realtime Database and get a reference to the service
-  const database = getDatabase(app);
-
-  const getData = ref(database);
 
   useEffect(() => {
     const fetchData = () => {
@@ -56,7 +33,7 @@ function MainPage({data, setData}) {
       }); 
     };
     fetchData();
-  }, [database, getData]);
+  }, [setData]);
 
   console.log(data)
 

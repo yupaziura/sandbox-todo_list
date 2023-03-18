@@ -38,7 +38,7 @@ const Desk = ({color, title, taskStatus, setData, data, visible}) => {
     let id = e.dataTransfer.getData('id');
     const updatedData = data.map((item, i) => {
       const updatedTask = item.id.StringGuid === id? {...item, status: status} : item
-      set(child(getData, `tasks/${item.id.StringGuid}`), updatedTask)
+      set(child(getData, `tasks/${localStorage.getItem('userId')}/${item.id.StringGuid}`), updatedTask)
       return updatedTask
       })
 

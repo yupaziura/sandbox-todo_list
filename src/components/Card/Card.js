@@ -29,7 +29,7 @@ const Card = ({data, date, status, guid, setData, task, descr, priority}) => {
         <>
             {/* 1. make card draggable by adding an atribute
             3. create onDragStart event for card and use e.transferData.setData('key', value) to store data */}
-            <div className={`card ${Math.floor((new Date (date) - new Date()) / (1000*60*60*24)) < 0 && status !== 'done'? 'overdue' : Math.floor((new Date (date) - new Date()) / (1000*60*60*24)) < 2 && status !== 'done'? 'soon' : null}`} draggable onDragStart={(e)=> {onStart(e)}}>
+            <div className={`card ${Math.floor((new Date (date) - new Date()) / (1000*60*60*24)) < 0 && (status !== 'done' && status !== 'archive') ? 'overdue' : Math.floor((new Date (date) - new Date()) / (1000*60*60*24)) < 2 && (status !== 'done' && status !== 'archive')? 'soon' : null}`} draggable onDragStart={(e)=> {onStart(e)}}>
                 <div className="card_top">
                     <h3>{task}</h3>
                     <DeleteButton deleteTask={deleteTask}/>

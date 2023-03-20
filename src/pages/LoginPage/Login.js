@@ -1,11 +1,11 @@
 import { signInWithGoogle } from '../../service/firebase';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 
 const Login = ({userId, setUserId}) => {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const login = () => {
         signInWithGoogle(setUserId);

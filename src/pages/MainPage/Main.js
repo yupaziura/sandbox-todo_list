@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import {child,get} from "firebase/database";
-import { getData } from '../../service/firebase';
-import { useFetchData } from '../../service/fetchData';
+import { useData } from '../../service/useData';
 import { useRequest } from '../../hooks/http.hook';
 
 import Desk from '../../components/Desk/Desk';
@@ -12,41 +10,18 @@ import './Main.scss';
 
 function MainPage({data, setData}) {
   const [showModal, setShowModal] = useState(false);
-  const action = useFetchData();
+  const fetchData = useData();
 
-  const {loading, error, request} = useRequest(action);
+  const {loading, request} = useRequest(fetchData);
 
 
 
   useEffect(() => {
-    // const fetchData = () => {
-    //   const newArr = [];
-    //   get(child(getData, `/tasks/${localStorage.getItem('userId')}`)).then((snapshot) => {
-    //     const fetched = snapshot.val();
-    //     return fetched;
-    //   }).then(val=>{
-    //     console.log(val)
-    //     if(val){
-    //       for(let value of Object.entries(val)){
-    //         newArr.push(value[1]);
-    //         setData(newArr)  
-    //       }
-    //     }
-    //     else{
-    //       setData([])
-    //     }
-    //   }); 
-    // };
-    // fetchData();
-     const  test =  request().then( d=> {
+     request().then( d=> {
        console.log(d);
        setData(d);
      })
   }, []);
-
-  // console.log(data)
-
-
 
 
   // TO USE DRAG & DROP

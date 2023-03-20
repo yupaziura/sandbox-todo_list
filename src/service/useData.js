@@ -1,8 +1,8 @@
 import {child,get} from "firebase/database";
 import { getData } from "./firebase";
 
-export const useFetchData = () => {
-    const action = async () => {
+export const useData = () => {
+    const fetchData = async () => {
         const newArr = [];
         await get(child(getData, `/tasks/${localStorage.getItem('userId')}`)).then((snapshot) => {
           const fetched = snapshot.val();
@@ -16,5 +16,5 @@ export const useFetchData = () => {
         }); 
         return newArr;
       };
-      return action;
+      return fetchData;
 }

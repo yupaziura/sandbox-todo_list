@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import {child,get} from "firebase/database";
 import { getData } from '../../service/firebase';
+import { useFetchData } from '../../service/fetchData';
+import { useRequest } from '../../hooks/http.hook';
 
 import Desk from '../../components/Desk/Desk';
 import Form from '../../components/Form/Form';
@@ -10,32 +12,39 @@ import './Main.scss';
 
 function MainPage({data, setData}) {
   const [showModal, setShowModal] = useState(false);
+  const action = useFetchData();
+
+  const {loading, error, request} = useRequest(action);
 
 
 
   useEffect(() => {
-    const fetchData = () => {
-      const newArr = [];
-      get(child(getData, `/tasks/${localStorage.getItem('userId')}`)).then((snapshot) => {
-        const fetched = snapshot.val();
-        return fetched;
-      }).then(val=>{
-        console.log(val)
-        if(val){
-          for(let value of Object.entries(val)){
-            newArr.push(value[1]);
-            setData(newArr)  
-          }
-        }
-        else{
-          setData([])
-        }
-      }); 
-    };
-    fetchData();
-  }, [setData]);
+    // const fetchData = () => {
+    //   const newArr = [];
+    //   get(child(getData, `/tasks/${localStorage.getItem('userId')}`)).then((snapshot) => {
+    //     const fetched = snapshot.val();
+    //     return fetched;
+    //   }).then(val=>{
+    //     console.log(val)
+    //     if(val){
+    //       for(let value of Object.entries(val)){
+    //         newArr.push(value[1]);
+    //         setData(newArr)  
+    //       }
+    //     }
+    //     else{
+    //       setData([])
+    //     }
+    //   }); 
+    // };
+    // fetchData();
+     const  test =  request().then( d=> {
+       console.log(d);
+       setData(d);
+     })
+  }, []);
 
-  console.log(data)
+  // console.log(data)
 
 
 
@@ -92,6 +101,9 @@ function MainPage({data, setData}) {
       <Form visibleForm={visibleForm} data={data} setData={setData} showModal={showModal} setShowModal={setShowModal}/>
       <div className='bord'>
         {
+          loading?
+          <p>loading</p>
+          :
           deskData.map(({taskStatus, color, title, visible}, i)=>{
             return (
               <div className='desk_container' key={i}>

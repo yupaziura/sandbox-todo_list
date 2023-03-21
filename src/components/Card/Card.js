@@ -1,11 +1,12 @@
 import {child, remove, set} from "firebase/database";
-import { getData } from "../../service/firebase";
+import { useFirebase } from "../../service/firebase";
 
 import DeleteButton from '../DeleteButton/DeleteButton';
 
 import './Card.scss';
 
 const Card = ({data, date, status, guid, setData, task, descr, priority}) => {
+    const {getData} = useFirebase();
     
     
     const deleteTask = () => {

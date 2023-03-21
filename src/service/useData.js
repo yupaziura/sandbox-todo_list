@@ -1,10 +1,11 @@
 import { useState } from "react";
 import {child, get, set} from "firebase/database";
-import { getData } from "./firebase";
+import { useFirebase } from "./firebase";
 
 export const useData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const {getData} = useFirebase();
 
     const fetchData = async () => {
         const newArr = [];

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {child, set} from "firebase/database";
-import { getData } from '../../service/firebase';
+import { useFirebase } from '../../service/firebase';
 
 import Card from '../Card/Card';
 import Sort from '../Sort/Sort';
@@ -8,6 +8,7 @@ import Sort from '../Sort/Sort';
 import './Desk.scss';
 
 const Desk = ({color, title, taskStatus, setData, data, visible}) => {
+  const {getData} = useFirebase();
   const sortOrder = ['low', 'middle', 'high'];
   const [sort, setSort] = useState('default');
 

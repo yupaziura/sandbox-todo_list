@@ -3,8 +3,9 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {getDatabase, ref} from 'firebase/database';
 
 
+export const useFirebase = () => {
 
-const firebaseConfig = {
+  const firebaseConfig = {
     apiKey: "AIzaSyCzLwQ6Hu_G40-bW7-5dw_KGAfIHsKnZE8",
     authDomain: "to-do-list-73624.firebaseapp.com",
     databaseURL: "https://to-do-list-73624-default-rtdb.firebaseio.com",
@@ -15,17 +16,17 @@ const firebaseConfig = {
   };
 
  
-export const app = initializeApp(firebaseConfig);
+ const app = initializeApp(firebaseConfig);
 
  const database = getDatabase(app);
 
- export const getData = ref(database);
+  const getData = ref(database);
 
 
-export const auth = getAuth();
+ const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
-export const signInWithGoogle = (setId) => {
+ const signInWithGoogle = (setId) => {
   signInWithPopup(auth, provider)
       .then((result) => {
           // const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -42,4 +43,8 @@ export const signInWithGoogle = (setId) => {
           const credential = GoogleAuthProvider.credentialFromError(error);
           console.log(errorCode, errorMessage, email, credential);
       });
+  }
+
+  return {app, getData, auth, signInWithGoogle}
 }
+

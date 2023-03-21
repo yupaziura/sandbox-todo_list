@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useData } from '../../service/useData';
-import { useRequest } from '../../hooks/http.hook';
 
 import Desk from '../../components/Desk/Desk';
 import Form from '../../components/Form/Form';
@@ -10,15 +9,12 @@ import './Main.scss';
 
 function MainPage({data, setData}) {
   const [showModal, setShowModal] = useState(false);
-  const fetchData = useData();
-
-  const {loading, request} = useRequest(fetchData);
+  const {fetchData, loading} = useData();
 
 
 
   useEffect(() => {
-     request().then( d=> {
-       console.log(d);
+    fetchData().then( d=> {
        setData(d);
      })
   }, []);

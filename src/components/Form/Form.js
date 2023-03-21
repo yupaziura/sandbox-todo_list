@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Guid } from 'js-guid';
-import {set,child} from "firebase/database";
-import { getData } from '../../service/firebase';
+import { useData } from '../../service/useData';
 
 import './Form.scss';
 
@@ -10,6 +9,9 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm}) => {
     const [descr, setDescr] = useState('');
     const [priority, setPriority] = useState('');
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+
+
+    const {pushData} = useData();
 
     
     const submitForm = (e) => {
@@ -25,29 +27,29 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm}) => {
             alert('Set proper due date')
         }
         else {
+            const guid = Guid.newGuid();
+
             
-            const giud = Guid.newGuid();
-            const pushData = (item) => {
-                set(child(getData, `/tasks/${localStorage.getItem('userId')}/${giud}`), item)
-              };
             const newItem = {
-                id: giud,
+                id: guid,
                 'task': task,
                 'descr': descr,
                 'priority' : priority,
                 'status': 'todo',
                 'date': date
-            };
+            }
 
-            pushData(newItem)
+            pushData(newItem, guid).then(()=> {
+                setShowModal(true);
+                setData([...data, newItem])
+                setTask('');
+                setDescr('');
+                setPriority('');
+                setDate(new Date().toISOString().split('T')[0]);
+                setTimeout(()=>setShowModal(false), 2000)      
+            })
+
             
-            setShowModal(true);
-            setData([...data, newItem])
-            setTask('');
-            setDescr('');
-            setPriority('');
-            setDate(new Date().toISOString().split('T')[0]);
-            setTimeout(()=>setShowModal(false), 2000)  
         }
     }
 

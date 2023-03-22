@@ -1,6 +1,7 @@
 import { initializeApp} from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {getDatabase, ref} from 'firebase/database';
+import { useCallback } from "react";
 
 
 export const useFirebase = () => {
@@ -26,7 +27,7 @@ export const useFirebase = () => {
  const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
- const signInWithGoogle = (setId) => {
+ const signInWithGoogle = useCallback((setId) => {
   signInWithPopup(auth, provider)
       .then((result) => {
           // const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -43,7 +44,7 @@ const provider = new GoogleAuthProvider();
           const credential = GoogleAuthProvider.credentialFromError(error);
           console.log(errorCode, errorMessage, email, credential);
       });
-  }
+  }, [])
 
   return {app, getData, auth, signInWithGoogle}
 }

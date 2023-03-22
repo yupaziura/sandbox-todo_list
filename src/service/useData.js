@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {child, get, set} from "firebase/database";
+import {child, get, set, remove} from "firebase/database";
 import { useFirebase } from "./firebase";
 
 export const useData = () => {
@@ -35,9 +35,19 @@ export const useData = () => {
           await set(child(getData, `/tasks/${localStorage.getItem('userId')}/${guid}`), item)
         }
         catch (e){
+          setError(true)
           console.log(e)
         }
       };
 
-      return {fetchData, pushData, loading, error, setLoading, setError};
+      const deleteData = async (guid) => {
+        try {
+          await remove(child(getData, `tasks/${localStorage.getItem('userId')}/${guid}`));
+        }
+        catch (e) {
+          console.log(e)
+        }
+      }
+
+      return {fetchData, pushData, loading, error, setLoading, setError, deleteData};
 }

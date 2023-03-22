@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Guid } from 'js-guid';
-import { useData } from '../../service/useData';
+import { useData } from '../../hooks/useData';
 
 import './Form.scss';
 

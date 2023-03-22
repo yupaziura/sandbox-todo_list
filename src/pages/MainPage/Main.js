@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useData } from '../../service/useData';
+import { useData } from '../../hooks/useData';
 
 import Desk from '../../components/Desk/Desk';
 import Form from '../../components/Form/Form';

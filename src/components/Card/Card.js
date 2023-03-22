@@ -1,14 +1,11 @@
-import {child, set} from "firebase/database";
-import { useFirebase } from "../../service/firebase";
-import { useData } from "../../service/useData";
+import { useData } from "../../hooks/useData";
 
 import DeleteButton from '../DeleteButton/DeleteButton';
 
 import './Card.scss';
 
 const Card = ({data, date, status, guid, setData, task, descr, priority}) => {
-    const {getData} = useFirebase();
-    const {deleteData} = useData();
+    const {deleteData, updateData} = useData();
     
     
     const deleteTask = () => {
@@ -16,13 +13,8 @@ const Card = ({data, date, status, guid, setData, task, descr, priority}) => {
     }
 
     const changeStatus = (value) => {
-        const updatedData = data.map((item, i) => {
-            const updatedTask = item.id.StringGuid === guid? {...item, status: value} : item
-            set(child(getData, `tasks/${localStorage.getItem('userId')}/${item.id.StringGuid}`), updatedTask)
-            return updatedTask
-            })
-
-        setData(updatedData)}
+        updateData(value, data, guid).then(res => setData(res))
+    }
 
     const onStart = (e) => {
         e.dataTransfer.setData('id', guid)

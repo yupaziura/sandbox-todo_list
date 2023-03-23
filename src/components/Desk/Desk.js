@@ -23,7 +23,7 @@ const Desk = ({color, title, taskStatus, setData, data, visible}) => {
         <div  onDragOver={(e)=> {e.preventDefault()}} 
               onDrop={(e)=>{drop(e, taskStatus)}}
               className={`desk ${!visible? 'visisbleFasle' : ''}`}
-              style={{backgroundColor: `${color}`}}
+              style={{border: ` 2px solid ${color}`, boxShadow: `0 0 10px ${color}`}}
         >
           <h2>{title}</h2>
           <Sort setSort={setSort}/>

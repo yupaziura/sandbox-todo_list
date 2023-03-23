@@ -34,19 +34,19 @@ function MainPage({data, setData}) {
 
   const deskData =  [
     {
-      color: '#4F646F',
+      color: '#620de0',
       taskStatus: 'todo',
       title: 'To Do',
       visible: true
     },
     {
-      color: '#A37B73',
+      color: '#0dbde0',
       taskStatus: 'inProgress',
       title: 'In progress',
       visible: true
     },
     {
-      color: '#606c38',
+      color: '#e00dcf',
       taskStatus: 'done',
       title: 'Done',
       visible: true
@@ -67,7 +67,7 @@ function MainPage({data, setData}) {
           :
         null
       }
-      <h1 style={{fontWeight:'bolder'}}> To Do list</h1>
+      <h1 style={{fontWeight:'200', color: 'white', fontSize: '50px', margin: '10px 0 20px '}}> To Do list</h1>
       <button className='openButton form_button' onClick={()=>setVisibleForm(visibleDesk=>!visibleDesk)}>{!visibleForm? 'create new task' : 'hide'}</button>
       <Form visibleForm={visibleForm} data={data} setData={setData} showModal={showModal} setShowModal={setShowModal}/>
       <div className='bord'>

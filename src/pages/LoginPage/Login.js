@@ -1,15 +1,17 @@
 // import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useFirebase } from '../../service/firebase';
 
 
 const Login = ({userId, setUserId}) => {
   const {signInWithGoogle} = useFirebase();
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const login = () => {
-        signInWithGoogle(setUserId);
+        signInWithGoogle(setUserId).then(()=>{
+          navigate('/main')
+        })
         
     }
 

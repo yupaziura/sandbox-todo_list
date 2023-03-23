@@ -27,8 +27,8 @@ export const useFirebase = () => {
  const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
- const signInWithGoogle = useCallback((setId) => {
-  signInWithPopup(auth, provider)
+ const signInWithGoogle = useCallback(async (setId) => {
+  await signInWithPopup(auth, provider)
       .then((result) => {
           // const credential = GoogleAuthProvider.credentialFromResult(result);
           // const token = credential.accessToken;

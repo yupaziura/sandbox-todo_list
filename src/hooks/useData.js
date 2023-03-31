@@ -26,7 +26,7 @@ export const useData = () => {
         }
         catch (e) {
           setError(true)
-          console.log(e)
+          console.log(e, 'tt')
         }
       };
 

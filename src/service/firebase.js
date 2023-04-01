@@ -46,6 +46,8 @@ const provider = new GoogleAuthProvider();
           const credential = GoogleAuthProvider.credentialFromError(error);
           console.log(errorCode, errorMessage, email, credential,'test e');
           setAuthError(true);
+          console.log(authError)
+
           throw error;
       });
   }, [])

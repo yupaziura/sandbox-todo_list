@@ -1,11 +1,23 @@
 @import '../../general';
 
 .card{
-    background-color: rgba(255, 255, 255, 0.439);
-    padding: 10px;
+    background-color: rgb(36, 36, 36);
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     border-radius: 10px;
     cursor: pointer;
     transition: all .3s;
+
+    &_title{
+        font-weight: 900;
+        font-size: 25px;
+    }
+    &_date, &_descr{
+        font-weight: 100;
+        // text-align: right;
+    }
 
     &_top {
         display: flex;
@@ -25,12 +37,12 @@
 
     .status{
         display: flex;
-        flex-direction: column;
-        .label {
-            margin: 10px 0;
-        }
+        gap: 10px;
+        align-items: center;
+
         select{
             @include dropdown;
+            margin: 0;
         }
     }
 
@@ -51,8 +63,16 @@
 
 .card.soon {
     background-color: rgb(191, 131, 72);
+    box-shadow: 0 0 10px rgb(191, 131, 72);
+    &:hover{
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.46);
+    }
 }
 
 .card.overdue {
-    background-color: rgb(191, 72, 72);
+    background-color: rgba(195, 65, 65, 0.743);
+    box-shadow: 0 0 10px rgba(195, 65, 65, 0.743);
+    &:hover{
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.46);
+    }
 }

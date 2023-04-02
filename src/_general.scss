@@ -15,7 +15,9 @@
     font-weight: 100;
 
     &:focus{
-        outline: rgb(209, 1, 198) solid 2px;
+        border: none;
+        outline: rgb(209, 1, 198) solid 1px;
+        box-shadow: 0 0 5px rgb(209, 1, 198);
     }
 }
 

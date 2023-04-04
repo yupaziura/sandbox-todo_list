@@ -57,33 +57,33 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm}) => {
     return (
         <>
             <form className={`form ${visibleForm? '' : 'visisbleFasle'}`}>
-                <h2>Create task</h2>
+                <h2 className='form_title'>Create task</h2>
 
                 <div className="form_container">
-                <div className="form_task form_field">
-                    <label className='label' htmlFor="">Task</label>
-                    <input onChange={(e)=> setTask(e.target.value)} size={30} className='form_input' type="text" id='task' value={task}/>
-                </div>
+                    <div className="form_task form_field">
+                        <label className='label' htmlFor="">Task</label>
+                        <input onChange={(e)=> setTask(e.target.value)} size={30} className='form_input' type="text" id='task' value={task}/>
+                    </div>
 
-                <div className="form_descr form_field">
-                    <label className='label' htmlFor="">Description</label>
-                    <textarea onChange={(e)=> setDescr(e.target.value)} rows={5} className='form_input' type="text" id='descr'  value={descr}/>
-                </div>
+                    <div className="form_descr form_field">
+                        <label className='label' htmlFor="">Description</label>
+                        <input onChange={(e)=> setDescr(e.target.value)} className='form_input' type="text" id='descr'  value={descr}/>
+                    </div>
 
-                <div className="form_priority form_field">
-                    <label className='label' htmlFor="">Priority</label>
-                    <select onChange={(e)=> setPriority(e.target.value)}  className='form_input'  id="" value={priority}>
-                        <option value="unset">- unset -</option>
-                        <option value="low">low</option>
-                        <option value="middle">middle</option>
-                        <option value="high">high</option>
-                    </select>
-                </div>
+                    <div className="form_priority form_field">
+                        <label className='label' htmlFor="">Priority</label>
+                        <select onChange={(e)=> setPriority(e.target.value)}  className='form_input'  id="" value={priority}>
+                            <option value="unset">- unset -</option>
+                            <option value="low">low</option>
+                            <option value="middle">middle</option>
+                            <option value="high">high</option>
+                        </select>
+                    </div>
 
-                <div className=" form_date form_field">
-                    <label className='label' htmlFor="">Due date</label>
-                    <input value={date} className='form_input' type="date" onChange={(e)=>setDate(e.target.value) }/>
-                </div>
+                    <div className=" form_date form_field">
+                        <label className='label' htmlFor="">Due date</label>
+                        <input value={date} className='form_input' type="date" onChange={(e)=>setDate(e.target.value) }/>
+                    </div>
                 </div>
 
                 <button onClick={(e)=> submitForm(e)} className='form_button' type='submit'>Create</button>

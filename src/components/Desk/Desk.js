@@ -25,8 +25,9 @@ const Desk = ({color, title, taskStatus, setData, data, visible}) => {
               className={`desk ${!visible? 'visisbleFasle' : ''}`}
               style={{border: ` 2px solid ${color}`, boxShadow: `0 0 10px ${color}`}}
         >
-          <h2>{title}</h2>
+          <h2 className='desk_title'>{title}</h2>
           <Sort setSort={setSort}/>
+          <hr style={{border: ` 1px solid ${color}`, boxShadow: `0 0 10px ${color}`}} className='divider'/>
 
           {
           data?.filter(item=>item?.status===taskStatus)

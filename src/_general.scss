@@ -1,18 +1,23 @@
 @mixin dropdown {
     display: block;
     width: 100%;
-    min-height: 40px;
-    padding: 5px 10px;
+    min-height: 30px;
+    padding: 5px 20px;
     margin-bottom: 20px;
 
-    border-radius: 5px;
-    border: none;
+    border-radius: 20px;
+    border: 1px solid white;
 
-    font-family: 'Courier New', Courier, monospace;
+    background-color: transparent;
+    color: white;
+    box-shadow: 0 0 2px white;
 
+    font-weight: 100;
 
     &:focus{
-        outline: olive dashed 2px;
+        border: none;
+        outline: rgb(209, 1, 198) solid 1px;
+        box-shadow: 0 0 5px rgb(209, 1, 198);
     }
 }
 

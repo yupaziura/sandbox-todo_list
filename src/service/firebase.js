@@ -1,10 +1,12 @@
 import { initializeApp} from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {getDatabase, ref} from 'firebase/database';
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 
 export const useFirebase = () => {
+
+  const [authError, setAuthError] = useState(false);
 
   const firebaseConfig = {
     apiKey: "AIzaSyCzLwQ6Hu_G40-bW7-5dw_KGAfIHsKnZE8",
@@ -42,10 +44,14 @@ const provider = new GoogleAuthProvider();
           const errorMessage = error.message;
           const email = error.customData.email;
           const credential = GoogleAuthProvider.credentialFromError(error);
-          console.log(errorCode, errorMessage, email, credential);
+          console.log(errorCode, errorMessage, email, credential,'test e');
+          setAuthError(true);
+          console.log(authError)
+
+          throw error;
       });
   }, [])
 
-  return {app, getData, auth, signInWithGoogle}
+  return {app, getData, auth, signInWithGoogle, authError, setAuthError}
 }
 

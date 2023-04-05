@@ -1,7 +1,8 @@
 @import '../../general.scss';
 
 .form {
-    max-width: 620px;
+    width: 620px;
+    height: 330px;
     margin: 20px 0 20px 0;
     padding: 20px;
 
@@ -13,6 +14,12 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 90;
+    transform: translate(-50%, -50%);
 
     &_title{
         font-size: 25px;
@@ -47,6 +54,11 @@
         font-weight: 100;
     }
 
+    .button_block{
+        display: flex;
+        gap: 30px;
+    }
+
     .form_button {
         @include button;
         background-color: rgb(170, 170, 170);
@@ -55,6 +67,15 @@
         &:hover{
             background-color: rgb(202, 202, 202);
             box-shadow: 0 0 10px rgb(202, 202, 202);
+        }
+    }
+
+    .close{
+        background-color: rgba(212, 82, 82, 0.743);
+        color: black;
+        &:hover{
+            background-color: rgba(195, 65, 65, 0.743);
+            box-shadow: 0 0 10px rgba(195, 65, 65, 0.743);
         }
     }
     input, textarea, select{

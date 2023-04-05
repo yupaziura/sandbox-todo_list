@@ -4,7 +4,7 @@ import { useData } from '../../hooks/useData';
 
 import './Form.scss';
 
-const Form = ({data, setData, showModal, setShowModal, visibleForm}) => {
+const Form = ({data, setData, showModal, setShowModal, visibleForm, setVisibleForm}) => {
     const [task, setTask] = useState('');
     const [descr, setDescr] = useState('');
     const [priority, setPriority] = useState('');
@@ -49,8 +49,15 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm}) => {
                 setTimeout(()=>setShowModal(false), 2000)      
             })
 
+            setVisibleForm(false);
+
             
         }
+    }
+
+    const closeForm = (e) => {
+        e.preventDefault();
+        setVisibleForm(false);
     }
 
   
@@ -85,8 +92,10 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm}) => {
                         <input value={date} className='form_input' type="date" onChange={(e)=>setDate(e.target.value) }/>
                     </div>
                 </div>
-
-                <button onClick={(e)=> submitForm(e)} className='form_button' type='submit'>Create</button>
+                <div className="button_block">
+                    <button onClick={(e)=> submitForm(e)} className='form_button' type='submit'>Create</button>
+                    <button onClick={(e)=> closeForm(e)} className='form_button close' >Close</button>
+                </div>
 
             </form>
         </>

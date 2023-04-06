@@ -46,7 +46,7 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm, setVisibleFo
                 setDescr('');
                 setPriority('');
                 setDate(new Date().toISOString().split('T')[0]);
-                setTimeout(()=>setShowModal(false), 2000)      
+                setTimeout(()=>setShowModal(false), 4000)      
             })
 
             setVisibleForm(false);

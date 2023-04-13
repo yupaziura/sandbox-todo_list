@@ -1,3 +1,5 @@
+@import '../../general';
+
 .login_page{
     height: 100vh;
     display: flex;
@@ -17,7 +19,7 @@
         border: none;
         border-radius: 30px;
 
-        background-color: rgb(31, 31, 31);
+        background-color: $bck-primary-dark;
         color: white;
 
         font-size: 20px;
@@ -26,8 +28,8 @@
         transition: all .3s;
 
         &:hover{
-            background-color: rgb(125, 0, 192);  
-            box-shadow: 0 0 20px rgb(125, 0, 192);
+            background-color: $primary;  
+            box-shadow: 0 0 20px $primary;
         }
     }
 }

@@ -1,3 +1,5 @@
+@import '../../general';
+
 .modal{
     width: 100vw;
     height: 100vh;
@@ -7,15 +9,15 @@
     align-items: center;
     justify-content: center;
 
-    background-color: rgb(28, 28, 28);
+    background-color: $bck-primary-dark;
 
     position: fixed;
     top: 0;
     left: 0;
 
     z-index: 20;
-    color:rgb(125, 0, 192);    
-    text-shadow: 0 0 30px rgb(125, 0, 192);
+    color: $primary;   
+    text-shadow: 0 0 30px $primary;
 
     animation-name: example;
     animation-duration: 2s;
@@ -23,8 +25,8 @@
     animation-direction: alternate; 
 
     @keyframes example {
-        0%    {color:rgb(20 20 20);   text-shadow: none;  }
-        100%  {color:rgb(125, 0, 192);    text-shadow: 0 0 30px rgb(125, 0, 192);  }
+        0%    {color:$bck-primary-darker;   text-shadow: none;  }
+        100%  {color:$primary;    text-shadow: 0 0 30px $primary;  }
     }
 
     .response {

@@ -21,6 +21,26 @@
     z-index: 90;
     transform: translate(-50%, -50%);
 
+    &_header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    &_close{
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+
+        &:hover{
+            path {
+                fill: $danger;
+                filter: drop-shadow(0 0 10px $danger);
+            }
+        }
+    }
+
     &_title{
         font-size: 25px;
         font-weight: 700;

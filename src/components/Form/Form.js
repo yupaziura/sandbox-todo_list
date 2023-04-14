@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Guid } from 'js-guid';
 import { useData } from '../../hooks/useData';
 
+import {ReactComponent as Close} from '../../img/icons/clear.svg';
+
 import './Form.scss';
 
 const Form = ({data, setData, showModal, setShowModal, visibleForm, setVisibleForm}) => {
@@ -64,7 +66,10 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm, setVisibleFo
     return (
         <>
             <form className={`form ${visibleForm? '' : 'visisbleFasle'}`}>
-                <h2 className='form_title'>Create task</h2>
+                <div className="form_header">
+                    <h2 className='form_title'>Create task</h2>
+                    <Close className='form_close' onClick={(e) => closeForm(e)}/>
+                </div>
 
                 <div className="form_container">
                     <div className="form_task form_field">

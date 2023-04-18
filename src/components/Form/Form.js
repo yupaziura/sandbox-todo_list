@@ -52,20 +52,20 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm, setVisibleFo
             })
 
             setVisibleForm(false);
-
-            
+            document.body.style.overflow = 'unset';
         }
     }
 
     const closeForm = (e) => {
         e.preventDefault();
         setVisibleForm(false);
+        document.body.style.overflow = 'unset';
     }
 
   
     return (
         <>
-            <form className={`form ${visibleForm? '' : 'visisbleFasle'}`}>
+            <form onClick={(e)=>e.stopPropagation()} className={`form ${visibleForm? '' : 'visisbleFasle'}`}>
                 <div className="form_header">
                     <h2 className='form_title'>Create task</h2>
                     <Close className='form_close' onClick={(e) => closeForm(e)}/>

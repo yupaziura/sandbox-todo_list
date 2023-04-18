@@ -59,8 +59,13 @@ function MainPage({data, setData}) {
     }
   ]
 
+  const showForm = () => {
+    setVisibleForm(visibleDesk=>!visibleDesk);
+    document.body.style.overflow = 'hidden';
+  }
+
   return (
-    <div className={`App`}>
+    <div className={`App`} onClick={()=>setVisibleForm(false)}>
       <Form setVisibleForm={setVisibleForm} visibleForm={visibleForm} data={data} setData={setData} showModal={showModal} setShowModal={setShowModal}/>
       {
         showModal? 
@@ -68,9 +73,9 @@ function MainPage({data, setData}) {
           :
         null
       }
-      <div className={`wrapper ${visibleForm? 'shaded' : null}`}>
+      <div className={`wrapper ${visibleForm? 'shaded' : null}`} onClick={(e)=>e.stopPropagation()}>
         <h1 style={{fontWeight:'200', color: 'white', fontSize: '50px', margin: '10px 0 20px '}}> To Do list</h1>
-        <button className='openButton form_button' onClick={()=>setVisibleForm(visibleDesk=>!visibleDesk)}>{!visibleForm? 'create new task' : 'hide'}</button>
+        <button className='openButton form_button' onClick={()=>showForm()}>{!visibleForm? 'create new task' : 'hide'}</button>
         <div className='bord'>
           {
             loading?

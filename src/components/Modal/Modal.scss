@@ -1,8 +1,8 @@
 @import '../../general';
 
 .modal{
-    width: 100vw;
-    height: 100vh;
+    width: clam(300px, 50%, 50vh);
+    height: 250px;
     padding: 40px 20px;
 
     display: flex;
@@ -10,10 +10,13 @@
     justify-content: center;
 
     background-color: $bck-primary-dark;
+    border-radius: 10px;
 
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
 
     z-index: 20;
     color: $primary;   

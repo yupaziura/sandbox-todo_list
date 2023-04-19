@@ -73,7 +73,7 @@ function MainPage({data, setData}) {
           :
         null
       }
-      <div className={`wrapper ${visibleForm? 'shaded' : null}`} onClick={(e)=>e.stopPropagation()}>
+      <div className={`wrapper ${visibleForm || showModal? 'shaded' : null}`} onClick={(e)=>e.stopPropagation()}>
         <h1 style={{fontWeight:'200', color: 'white', fontSize: '50px', margin: '10px 0 20px '}}> To Do list</h1>
         <button className='openButton form_button' onClick={()=>showForm()}>{!visibleForm? 'create new task' : 'hide'}</button>
         <div className='bord'>

@@ -4,6 +4,7 @@ import { useData } from '../../hooks/useData';
 import Desk from '../../components/Desk/Desk';
 import Form from '../../components/Form/Form';
 import ModalWindow from '../../components/Modal/Modal';
+import Loading from '../../components/Loading/Loading';
 
 import './Main.scss';
 
@@ -79,7 +80,7 @@ function MainPage({data, setData}) {
         <div className='bord'>
           {
             loading?
-            <p>loading</p>
+            <Loading/>
             :
             deskData.map(({taskStatus, color, title, visible}, i)=>{
               return (

@@ -9,7 +9,7 @@ import './Form.scss';
 const Form = ({data, setData, showModal, setShowModal, visibleForm, setVisibleForm}) => {
     const [task, setTask] = useState('');
     const [descr, setDescr] = useState('');
-    const [priority, setPriority] = useState('');
+    const [priority, setPriority] = useState('low');
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
 
@@ -85,7 +85,7 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm, setVisibleFo
                     <div className="form_priority form_field">
                         <label className='label' htmlFor="">Priority</label>
                         <select onChange={(e)=> setPriority(e.target.value)}  className='form_input'  id="" value={priority}>
-                            <option value="unset">- unset -</option>
+                            {/* <option value="unset">- unset -</option> */}
                             <option value="low">low</option>
                             <option value="middle">middle</option>
                             <option value="high">high</option>

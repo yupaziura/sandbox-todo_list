@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useData } from '../../hooks/useData';
+import {useFirebase} from '../../service/firebase';
+import { useNavigate } from 'react-router-dom';
 
 import Desk from '../../components/Desk/Desk';
 import Form from '../../components/Form/Form';
@@ -11,6 +13,8 @@ import './Main.scss';
 function MainPage({data, setData}) {
   const [showModal, setShowModal] = useState(false);
   const {fetchData, loading} = useData();
+  const {signOutWithGoogle} = useFirebase();
+  const navigate = useNavigate();
 
 
 
@@ -65,6 +69,13 @@ function MainPage({data, setData}) {
     document.body.style.overflow = 'hidden';
   }
 
+  const out = () => {
+    signOutWithGoogle().then((data=> {
+      console.log(data);
+      navigate('/')
+    }))
+  }
+
   return (
     <div className={`App`} onClick={()=>setVisibleForm(false)}>
       <Form setVisibleForm={setVisibleForm} visibleForm={visibleForm} data={data} setData={setData} showModal={showModal} setShowModal={setShowModal}/>
@@ -75,7 +86,10 @@ function MainPage({data, setData}) {
         null
       }
       <div className={`wrapper ${visibleForm || showModal? 'shaded' : null}`} onClick={(e)=>e.stopPropagation()}>
-        <h1 style={{fontWeight:'200', color: 'white', fontSize: '50px', margin: '10px 0 20px '}}> To Do list</h1>
+        <div className="hrader">
+          <h1 style={{fontWeight:'200', color: 'white', fontSize: '50px', margin: '10px 0 20px '}}> To Do list</h1>
+          <button onClick={out}>Sign out</button>
+        </div>
         <button className='openButton form_button' onClick={()=>showForm()}>{!visibleForm? 'create new task' : 'hide'}</button>
         <div className='bord'>
           {

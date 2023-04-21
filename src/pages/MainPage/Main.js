@@ -7,6 +7,7 @@ import Desk from '../../components/Desk/Desk';
 import Form from '../../components/Form/Form';
 import ModalWindow from '../../components/Modal/Modal';
 import Loading from '../../components/Loading/Loading';
+import {ReactComponent as Logout} from '../../img/icons/logout.svg';
 
 import './Main.scss';
 
@@ -86,9 +87,9 @@ function MainPage({data, setData}) {
         null
       }
       <div className={`wrapper ${visibleForm || showModal? 'shaded' : null}`} onClick={(e)=>e.stopPropagation()}>
-        <div className="hrader">
+        <div className="header">
           <h1 style={{fontWeight:'200', color: 'white', fontSize: '50px', margin: '10px 0 20px '}}> To Do list</h1>
-          <button onClick={out}>Sign out</button>
+          <button onClick={out}><Logout/></button>
         </div>
         <button className='openButton form_button' onClick={()=>showForm()}>{!visibleForm? 'create new task' : 'hide'}</button>
         <div className='bord'>

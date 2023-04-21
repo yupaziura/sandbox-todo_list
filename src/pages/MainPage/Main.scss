@@ -5,6 +5,30 @@
     position: relative;
 }
 
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button{
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+
+        &:hover{
+            path{
+                fill: $danger;
+                filter: drop-shadow(0 0 5px $danger);
+            }
+        }
+    }
+    svg{
+        width: 35px;
+        height: 35px;
+    }
+}
+
 .shaded{
     filter: blur(6px);
     pointer-events: none;

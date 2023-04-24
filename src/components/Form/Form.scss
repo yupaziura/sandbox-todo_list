@@ -111,3 +111,12 @@
 .form.visisbleFasle{
     @include hide;
 }
+
+@media (max-width: 768px) {
+    .form {
+        width: clamp(290px, 50%, 620px);
+        height:fit-content;
+        overflow:scroll;
+        overflow-x:hidden;    
+    }
+}

@@ -24,7 +24,6 @@
     }
     &_date, &_descr{
         font-weight: 100;
-        // text-align: right;
     }
 
     &_top {
@@ -33,11 +32,6 @@
         align-items: center;
     }
 
-    .priority{
-        padding: 5px;
-        text-align: center;
-        border-radius: 20px;
-    }
 
     .date{
         margin-top: 10px;
@@ -52,16 +46,6 @@
             @include dropdown;
             margin: 0;
         }
-    }
-
-    .low{
-        background-color: rgb(80, 117, 79);
-    }
-    .middle{
-        background-color: rgb(154, 119, 54);
-    }
-    .high{
-        background-color: rgb(172, 104, 89);
     }
 
     &:hover{
@@ -82,5 +66,27 @@
     box-shadow: 0 0 10px $danger-dark;
     &:hover{
         box-shadow: 0 0 10px $bck-primary-darker;
+    }
+}
+
+@media (max-width: 768px) {
+    .card{
+        padding: 15px 7px;
+
+        &_emoji{
+            top: -15px;
+            right: 34px;
+            position: absolute;
+            font-size: 35px;
+        }
+    
+        &_title{
+            font-weight: 900;
+            font-size: 17px;
+        }
+
+        p{
+            font-size: 14px;
+        }
     }
 }

@@ -58,6 +58,13 @@ $warning: rgb(191, 131, 72);
         background-color: rgb(125, 0, 192);  
         box-shadow: 0 0 20px rgb(125, 0, 192);
     }
+
+    @media(max-width: 768px){
+        width: 120px;
+        padding: 7px;
+
+        font-size: 14px;
+    }
 }
 
 @mixin hide {

@@ -1,7 +1,7 @@
 @import '../../general';
 
 .card{
-    background-color: rgb(36, 36, 36);
+    background-color: $bck-primary-dark;
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
@@ -9,6 +9,14 @@
     border-radius: 10px;
     cursor: pointer;
     transition: all .3s;
+    position: relative;
+
+    &_emoji{
+        top: -15px;
+        right: 34px;
+        position: absolute;
+        font-size: 40px;
+    }
 
     &_title{
         font-weight: 900;
@@ -16,7 +24,6 @@
     }
     &_date, &_descr{
         font-weight: 100;
-        // text-align: right;
     }
 
     &_top {
@@ -25,11 +32,6 @@
         align-items: center;
     }
 
-    .priority{
-        padding: 5px;
-        text-align: center;
-        border-radius: 20px;
-    }
 
     .date{
         margin-top: 10px;
@@ -46,33 +48,45 @@
         }
     }
 
-    .low{
-        background-color: rgb(80, 117, 79);
-    }
-    .middle{
-        background-color: rgb(154, 119, 54);
-    }
-    .high{
-        background-color: rgb(172, 104, 89);
-    }
-
     &:hover{
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.46);
+        box-shadow: 0 0 10px $bck-primary-darker;
     }
 }
 
 .card.soon {
-    background-color: rgb(191, 131, 72);
-    box-shadow: 0 0 10px rgb(191, 131, 72);
+    background-color: $warning;
+    box-shadow: 0 0 10px $warning;
     &:hover{
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.46);
+        box-shadow: 0 0 10px $bck-primary-darker;
     }
 }
 
 .card.overdue {
-    background-color: rgba(195, 65, 65, 0.743);
-    box-shadow: 0 0 10px rgba(195, 65, 65, 0.743);
+    background-color: $danger-dark;
+    box-shadow: 0 0 10px $danger-dark;
     &:hover{
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.46);
+        box-shadow: 0 0 10px $bck-primary-darker;
+    }
+}
+
+@media (max-width: 768px) {
+    .card{
+        padding: 15px 7px;
+
+        &_emoji{
+            top: -15px;
+            right: 34px;
+            position: absolute;
+            font-size: 35px;
+        }
+    
+        &_title{
+            font-weight: 900;
+            font-size: 17px;
+        }
+
+        p{
+            font-size: 14px;
+        }
     }
 }

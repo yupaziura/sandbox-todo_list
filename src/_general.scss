@@ -1,3 +1,20 @@
+// variables
+
+$bck-primary: rgb(48, 48, 48);
+$bck-primary-dark: rgb(31, 31, 31);
+$bck-primary-darker: rgb(20 20 20);
+
+$primary: rgb(125, 0, 192);
+
+$light: rgb(202, 202, 202);
+$light-dark: rgb(170, 170, 170);
+
+$danger: rgba(212, 82, 82, 0.743);
+$danger-dark:rgba(195, 65, 65, 0.743);
+
+$warning: rgb(191, 131, 72);
+
+
 @mixin dropdown {
     display: block;
     width: 100%;
@@ -40,6 +57,13 @@
     &:hover{
         background-color: rgb(125, 0, 192);  
         box-shadow: 0 0 20px rgb(125, 0, 192);
+    }
+
+    @media(max-width: 768px){
+        width: 120px;
+        padding: 7px;
+
+        font-size: 14px;
     }
 }
 

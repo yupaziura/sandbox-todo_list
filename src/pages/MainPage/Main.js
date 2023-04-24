@@ -1,15 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useData } from '../../hooks/useData';
+import {useFirebase} from '../../service/firebase';
+import { useNavigate } from 'react-router-dom';
 
 import Desk from '../../components/Desk/Desk';
 import Form from '../../components/Form/Form';
 import ModalWindow from '../../components/Modal/Modal';
+import Loading from '../../components/Loading/Loading';
+import {ReactComponent as Logout} from '../../img/icons/logout.svg';
 
 import './Main.scss';
 
 function MainPage({data, setData}) {
   const [showModal, setShowModal] = useState(false);
   const {fetchData, loading} = useData();
+  const {signOutWithGoogle} = useFirebase();
+  const navigate = useNavigate();
 
 
 
@@ -59,8 +65,20 @@ function MainPage({data, setData}) {
     }
   ]
 
+  const showForm = () => {
+    setVisibleForm(visibleDesk=>!visibleDesk);
+    document.body.style.overflow = 'hidden';
+  }
+
+  const out = () => {
+    signOutWithGoogle().then((data=> {
+      console.log(data);
+      navigate('/')
+    }))
+  }
+
   return (
-    <div className={`App`}>
+    <div className={`App`} onClick={()=>setVisibleForm(false)}>
       <Form setVisibleForm={setVisibleForm} visibleForm={visibleForm} data={data} setData={setData} showModal={showModal} setShowModal={setShowModal}/>
       {
         showModal? 
@@ -68,22 +86,23 @@ function MainPage({data, setData}) {
           :
         null
       }
-      <div className={`wrapper ${visibleForm? 'shaded' : null}`}>
-        <h1 style={{fontWeight:'200', color: 'white', fontSize: '50px', margin: '10px 0 20px '}}> To Do list</h1>
-        <button className='openButton form_button' onClick={()=>setVisibleForm(visibleDesk=>!visibleDesk)}>{!visibleForm? 'create new task' : 'hide'}</button>
+      <div className={`wrapper ${visibleForm || showModal? 'shaded' : null}`} onClick={(e)=>e.stopPropagation()}>
+        <div className="header">
+          <h1 style={{fontWeight:'200', color: 'white', fontSize: '50px', margin: '10px 0 20px '}}> To Do list</h1>
+          <button onClick={out}><Logout/></button>
+        </div>
+        <div className="buttons">
+          <button className='openButton form_button' onClick={()=>showForm()}>{!visibleForm? 'create new task' : 'hide'}</button>
+          <button className='openButton ' onClick={()=>setvisibleDesk(visibleDesk=>!visibleDesk)}>{!visibleDesk? 'show archive' : 'hide archive'}</button>
+        </div>
         <div className='bord'>
           {
             loading?
-            <p>loading</p>
+            <Loading/>
             :
             deskData.map(({taskStatus, color, title, visible}, i)=>{
               return (
                 <div className='desk_container' key={i}>
-                  {
-                    title === 'Archive'?
-                    <button className='openButton' onClick={()=>setvisibleDesk(visibleDesk=>!visibleDesk)}>{!visible? 'show archive' : 'hide archive'}</button>
-                    : null
-                  }
                   <Desk data={data} setData={setData} taskStatus={taskStatus} color={color} title={title} visible={visible}/>
                 </div>
               )

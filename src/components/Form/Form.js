@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Guid } from 'js-guid';
 import { useData } from '../../hooks/useData';
 
+import {ReactComponent as Close} from '../../img/icons/clear.svg';
+
 import './Form.scss';
 
 const Form = ({data, setData, showModal, setShowModal, visibleForm, setVisibleForm}) => {
     const [task, setTask] = useState('');
     const [descr, setDescr] = useState('');
-    const [priority, setPriority] = useState('');
+    const [priority, setPriority] = useState('low');
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
 
@@ -46,25 +48,28 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm, setVisibleFo
                 setDescr('');
                 setPriority('');
                 setDate(new Date().toISOString().split('T')[0]);
-                setTimeout(()=>setShowModal(false), 2000)      
+                setTimeout(()=>setShowModal(false), 4000)      
             })
 
             setVisibleForm(false);
-
-            
+            document.body.style.overflow = 'unset';
         }
     }
 
     const closeForm = (e) => {
         e.preventDefault();
         setVisibleForm(false);
+        document.body.style.overflow = 'unset';
     }
 
   
     return (
         <>
-            <form className={`form ${visibleForm? '' : 'visisbleFasle'}`}>
-                <h2 className='form_title'>Create task</h2>
+            <form onClick={(e)=>e.stopPropagation()} className={`form ${visibleForm? '' : 'visisbleFasle'}`}>
+                <div className="form_header">
+                    <h2 className='form_title'>Create task</h2>
+                    <Close className='form_close' onClick={(e) => closeForm(e)}/>
+                </div>
 
                 <div className="form_container">
                     <div className="form_task form_field">
@@ -80,7 +85,7 @@ const Form = ({data, setData, showModal, setShowModal, visibleForm, setVisibleFo
                     <div className="form_priority form_field">
                         <label className='label' htmlFor="">Priority</label>
                         <select onChange={(e)=> setPriority(e.target.value)}  className='form_input'  id="" value={priority}>
-                            <option value="unset">- unset -</option>
+                            {/* <option value="unset">- unset -</option> */}
                             <option value="low">low</option>
                             <option value="middle">middle</option>
                             <option value="high">high</option>

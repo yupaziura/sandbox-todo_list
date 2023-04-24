@@ -5,8 +5,33 @@
     position: relative;
 }
 
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button{
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+
+        &:hover{
+            path{
+                fill: $danger;
+                filter: drop-shadow(0 0 5px $danger);
+            }
+        }
+    }
+    svg{
+        width: 35px;
+        height: 35px;
+    }
+}
+
 .shaded{
     filter: blur(6px);
+    pointer-events: none;
 }
 
 .bord {
@@ -17,10 +42,14 @@
     grid-gap: 20px;
   }
 
+  .buttons{
+    max-width: 320px;
+    display: flex;
+    justify-content: space-between;
+  }
+
 .openButton {
     @include button;
-    position: absolute;
-    top: -50px;
 }
 
 .form_button{
@@ -28,8 +57,25 @@
 }
 
 .desk_container{
-    // display: flex;
-    // flex-direction: column;
-    // gap: 20px;
     position: relative;
+}
+
+@media (max-width: 768px) {
+    .App{
+        padding: 15px;
+    }
+
+    .buttons{
+        max-width: 280px;
+    }
+
+    .header{
+        h1{
+            font-size: 35px !important;
+        }
+        svg{
+            width: 25px;
+            height: 25px;
+        }
+    }
 }

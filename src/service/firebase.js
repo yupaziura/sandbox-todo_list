@@ -1,5 +1,5 @@
 import { initializeApp} from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import {getDatabase, ref} from 'firebase/database';
 import { useCallback, useState } from "react";
 
@@ -27,7 +27,7 @@ export const useFirebase = () => {
 
 
  const auth = getAuth();
-const provider = new GoogleAuthProvider();
+ const provider = new GoogleAuthProvider();
 
  const signInWithGoogle = useCallback(async (setId) => {
   await signInWithPopup(auth, provider)
@@ -52,6 +52,25 @@ const provider = new GoogleAuthProvider();
       });
   }, [])
 
-  return {app, getData, auth, signInWithGoogle, authError, setAuthError}
+  const signOutWithGoogle = useCallback(async () => {
+    await signOut(auth, provider)
+        .then(() => {
+            localStorage.setItem('userId', null);
+            return 'Sucessfull';
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const email = error.customData.email;
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            console.log(errorCode, errorMessage, email, credential,'test e');
+            setAuthError(true);
+            console.log(authError)
+  
+            throw error;
+        });
+    }, [])
+
+  return {app, getData, auth, signInWithGoogle, authError, setAuthError, signOutWithGoogle}
 }
 

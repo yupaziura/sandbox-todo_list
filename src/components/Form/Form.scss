@@ -6,7 +6,7 @@
     margin: 20px 0 20px 0;
     padding: 20px;
 
-    background-color: rgb(36, 36, 36);
+    background-color: $bck-primary-dark;
     color: white;
     border-radius: 10px;
     font-weight: 100;
@@ -20,6 +20,26 @@
     left: 50%;
     z-index: 90;
     transform: translate(-50%, -50%);
+
+    &_header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    &_close{
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+
+        &:hover{
+            path {
+                fill: $danger;
+                filter: drop-shadow(0 0 10px $danger);
+            }
+        }
+    }
 
     &_title{
         font-size: 25px;
@@ -61,26 +81,26 @@
 
     .form_button {
         @include button;
-        background-color: rgb(170, 170, 170);
-        color: black;
+        background-color: $light-dark;
+        color: $bck-primary-dark;
 
         &:hover{
-            background-color: rgb(202, 202, 202);
-            box-shadow: 0 0 10px rgb(202, 202, 202);
+            background-color: $light;
+            box-shadow: 0 0 10px $light;
         }
     }
 
     .close{
-        background-color: rgba(212, 82, 82, 0.743);
-        color: black;
+        background-color: $danger;
+        color: $bck-primary-dark;
         &:hover{
-            background-color: rgba(195, 65, 65, 0.743);
-            box-shadow: 0 0 10px rgba(195, 65, 65, 0.743);
+            background-color: $danger-dark;
+            box-shadow: 0 0 10px $danger-dark;
         }
     }
     input, textarea, select{
         &:focus{
-            outline: olive dashed 2px;
+            outline: $primary dashed 2px;
         }
     }
     input[type="date"]::-webkit-calendar-picker-indicator {
@@ -90,4 +110,13 @@
 
 .form.visisbleFasle{
     @include hide;
+}
+
+@media (max-width: 768px) {
+    .form {
+        width: clamp(290px, 50%, 620px);
+        height:fit-content;
+        overflow:scroll;
+        overflow-x:hidden;    
+    }
 }

@@ -42,10 +42,14 @@
     grid-gap: 20px;
   }
 
+  .buttons{
+    max-width: 320px;
+    display: flex;
+    justify-content: space-between;
+  }
+
 .openButton {
     @include button;
-    position: absolute;
-    top: -50px;
 }
 
 .form_button{

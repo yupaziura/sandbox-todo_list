@@ -91,7 +91,10 @@ function MainPage({data, setData}) {
           <h1 style={{fontWeight:'200', color: 'white', fontSize: '50px', margin: '10px 0 20px '}}> To Do list</h1>
           <button onClick={out}><Logout/></button>
         </div>
-        <button className='openButton form_button' onClick={()=>showForm()}>{!visibleForm? 'create new task' : 'hide'}</button>
+        <div className="buttons">
+          <button className='openButton form_button' onClick={()=>showForm()}>{!visibleForm? 'create new task' : 'hide'}</button>
+          <button className='openButton ' onClick={()=>setvisibleDesk(visibleDesk=>!visibleDesk)}>{!visibleDesk? 'show archive' : 'hide archive'}</button>
+        </div>
         <div className='bord'>
           {
             loading?
@@ -100,11 +103,6 @@ function MainPage({data, setData}) {
             deskData.map(({taskStatus, color, title, visible}, i)=>{
               return (
                 <div className='desk_container' key={i}>
-                  {
-                    title === 'Archive'?
-                    <button className='openButton' onClick={()=>setvisibleDesk(visibleDesk=>!visibleDesk)}>{!visible? 'show archive' : 'hide archive'}</button>
-                    : null
-                  }
                   <Desk data={data} setData={setData} taskStatus={taskStatus} color={color} title={title} visible={visible}/>
                 </div>
               )

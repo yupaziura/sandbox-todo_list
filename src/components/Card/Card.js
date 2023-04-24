@@ -25,6 +25,7 @@ const Card = ({data, date, status, guid, setData, task, descr, priority}) => {
             {/* 1. make card draggable by adding an atribute
             3. create onDragStart event for card and use e.transferData.setData('key', value) to store data */}
             <div className={`card ${Math.floor((new Date (date) - new Date()) / (1000*60*60*24)) < 0 && (status !== 'done' && status !== 'archive') ? 'overdue' : Math.floor((new Date (date) - new Date()) / (1000*60*60*24)) < 2 && (status !== 'done' && status !== 'archive')? 'soon' : null}`} draggable onDragStart={(e)=> {onStart(e)}}>
+                <div className="card_emoji">{priority === 'low'? '🍰' : priority === 'middle'? '😐' : '🔥'}</div>
                 <div className="card_top">
                     <h3 className="card_title">{task}</h3>
                     <DeleteButton deleteTask={deleteTask}/>
@@ -32,10 +33,6 @@ const Card = ({data, date, status, guid, setData, task, descr, priority}) => {
                 <p className="card_descr">{descr}</p>
 
                 <p className="card_date">Due date: {date}</p>
-
-                {/* <div className={`priority ${priority}`}>
-                    {priority}
-                </div> */}
 
                 <div className="status">
                     <select onChange={(e)=>{changeStatus(e.target.value)}}  className='status_label'  id="" value={status}>

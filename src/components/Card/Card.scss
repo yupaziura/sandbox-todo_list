@@ -9,6 +9,14 @@
     border-radius: 10px;
     cursor: pointer;
     transition: all .3s;
+    position: relative;
+
+    &_emoji{
+        top: -15px;
+        right: 34px;
+        position: absolute;
+        font-size: 40px;
+    }
 
     &_title{
         font-weight: 900;

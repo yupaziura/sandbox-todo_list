@@ -16,6 +16,8 @@ $warning: rgb(191, 131, 72);
 
 
 @mixin dropdown {
+    appearance:none;
+
     display: block;
     width: 100%;
     min-height: 30px;
@@ -33,6 +35,7 @@ $warning: rgb(191, 131, 72);
 
     &:focus{
         border: none;
+        
         outline: rgb(209, 1, 198) solid 1px;
         box-shadow: 0 0 5px rgb(209, 1, 198);
     }

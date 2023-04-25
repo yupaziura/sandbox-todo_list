@@ -10,6 +10,7 @@ import Loading from '../../components/Loading/Loading';
 import {ReactComponent as Logout} from '../../img/icons/logout.svg';
 
 import './Main.scss';
+import '../../_general.scss';
 
 function MainPage({data, setData}) {
   const [showModal, setShowModal] = useState(false);

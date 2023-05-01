@@ -1,7 +1,10 @@
 @import '../../general';
 
 .desk {
+    width: 290px;
+    height: 100%;
     padding: 20px 10px 10px;
+    margin-bottom: 20px;
 
     border-radius: 10px;
     color:white;
@@ -25,13 +28,19 @@
     @include hide;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 990px) {
     .desk {
-        max-width: 290px;
+        width: 250px;
         padding: 15px 7px 7px;
 
         &_title{
             font-size: 25px;
         }
     }
+}
+
+@media (max-width: 689px) {
+    .desk {
+        max-width: 100%;
+      }
 }

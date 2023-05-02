@@ -28,6 +28,12 @@
     @include hide;
 }
 
+@media (max-width: 1010px){
+    .desk{
+        width: 270px;
+    }
+}
+
 @media (max-width: 990px) {
     .desk {
         width: 250px;

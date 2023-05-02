@@ -96,19 +96,25 @@ function MainPage({data, setData}) {
           <button className='openButton form_button' onClick={()=>showForm()}>{!visibleForm? 'create new task' : 'hide'}</button>
           <button className='openButton ' onClick={()=>setvisibleDesk(visibleDesk=>!visibleDesk)}>{!visibleDesk? 'show archive' : 'hide archive'}</button>
         </div>
-        <div className='bord'>
-          {
-            loading?
-            <Loading/>
-            :
-            deskData.map(({taskStatus, color, title, visible}, i)=>{
-              return (
-                <div className='desk_container' key={i}>
-                  <Desk data={data} setData={setData} taskStatus={taskStatus} color={color} title={title} visible={visible}/>
-                </div>
-              )
-            })
-          }
+        <div className="bord_container">
+          <div className="test"></div>
+          <div className='bord'>
+            {
+              loading?
+              <Loading/>
+              :
+              deskData.map(({taskStatus, color, title, visible}, i)=>{
+                return (
+                  visible?
+                  <div className='desk_container' key={i}>
+                      <Desk data={data} setData={setData} taskStatus={taskStatus} color={color} title={title} visible={visible}/>
+                  </div>
+                  :
+                  null
+                )
+              })
+            }
+          </div>
         </div>
       </div>
     </div>

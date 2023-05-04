@@ -98,23 +98,27 @@ function MainPage({data, setData}) {
         </div>
         <div className="bord_container">
           <div className="test"></div>
-          <div className='bord'>
             {
               loading?
               <Loading/>
               :
-              deskData.map(({taskStatus, color, title, visible}, i)=>{
-                return (
-                  visible?
-                  <div className='desk_container' key={i}>
-                      <Desk data={data} setData={setData} taskStatus={taskStatus} color={color} title={title} visible={visible}/>
-                  </div>
-                  :
-                  null
-                )
-              })
+              <>
+                <div className='bord'>
+                {
+                  deskData.map(({taskStatus, color, title, visible}, i)=>{
+                    return (
+                      visible?
+                      <div className='desk_container' key={i}>
+                          <Desk data={data} setData={setData} taskStatus={taskStatus} color={color} title={title} visible={visible}/>
+                      </div>
+                      :
+                      null
+                    )
+                  })
+                }
+                </div>
+              </>
             }
-          </div>
         </div>
       </div>
     </div>
